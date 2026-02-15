@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Dorm Ops – Villanova Preparatory School</title>
   <style>
+    @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Fraunces:wght@600;700&display=swap');
+    
     * {
       margin: 0;
       padding: 0;
@@ -12,15 +14,17 @@
     }
 
     body {
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      background: #F8FAFC;
-      color: #6B7280;
+      font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: #FAF9F6;
+      color: #4A4A4A;
       line-height: 1.6;
     }
 
     h1, h2, h3, h4 {
-      color: #111827;
-      font-weight: 600;
+      font-family: 'Fraunces', Georgia, serif;
+      color: #1A1A1A;
+      font-weight: 700;
+      letter-spacing: -0.02em;
     }
 
     .app-container {
@@ -28,16 +32,17 @@
       min-height: 100vh;
     }
 
-    /* Sidebar */
+    /* Sidebar - Warmer, Community Feel */
     .sidebar {
       width: 240px;
-      background: #002664;
+      background: linear-gradient(180deg, #002664 0%, #003880 100%);
       color: white;
       padding: 2rem 0;
       position: fixed;
       height: 100vh;
       left: 0;
       top: 0;
+      box-shadow: 4px 0 24px rgba(0, 38, 100, 0.12);
     }
 
     .sidebar-logo {
@@ -45,46 +50,63 @@
       font-size: 1.5rem;
       font-weight: 700;
       color: white;
-      border-bottom: 1px solid rgba(255,255,255,0.1);
+      border-bottom: 1px solid rgba(212, 175, 55, 0.3);
       margin-bottom: 1rem;
+      font-family: 'Fraunces', serif;
+      letter-spacing: -0.03em;
     }
 
     .sidebar-nav a {
       display: flex;
       align-items: center;
-      gap: 0.75rem;
-      padding: 0.75rem 1.5rem;
-      color: rgba(255,255,255,0.8);
+      gap: 0.875rem;
+      padding: 0.875rem 1.5rem;
+      margin: 0.25rem 0.75rem;
+      color: rgba(255,255,255,0.85);
       text-decoration: none;
-      transition: all 0.2s;
+      transition: all 0.25s ease;
+      border-radius: 12px;
+      font-weight: 500;
+      font-size: 0.9375rem;
     }
 
-    .sidebar-nav a:hover,
-    .sidebar-nav a.active {
-      background: #0A3D91;
+    .sidebar-nav a:hover {
+      background: rgba(255,255,255,0.1);
       color: white;
+      transform: translateX(4px);
+    }
+
+    .sidebar-nav a.active {
+      background: linear-gradient(135deg, rgba(212, 175, 55, 0.25) 0%, rgba(212, 175, 55, 0.15) 100%);
+      color: #FFD700;
+      box-shadow: 0 2px 8px rgba(212, 175, 55, 0.2);
     }
 
     .sidebar-nav .icon {
-      width: 20px;
-      height: 20px;
-      display: inline-block;
+      width: 22px;
+      height: 22px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.125rem;
     }
 
-    /* Main Content */
+    /* Main Content - Warm & Inviting */
     .main-content {
       margin-left: 240px;
       flex: 1;
       min-height: 100vh;
+      background: #FAF9F6;
     }
 
     .header {
-      background: white;
-      padding: 1.5rem 2rem;
-      border-bottom: 1px solid #E5E7EB;
+      background: #FFFFFF;
+      padding: 2rem 2.5rem;
+      border-bottom: 1px solid #F0EDE6;
       position: sticky;
       top: 0;
       z-index: 100;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.02);
     }
 
     .header-top {
@@ -94,7 +116,11 @@
     }
 
     .header h1 {
-      font-size: 1.75rem;
+      font-size: 2rem;
+      background: linear-gradient(135deg, #002664 0%, #003880 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
     }
 
     .header-actions {
@@ -104,73 +130,99 @@
     }
 
     .search-box {
-      padding: 0.5rem 1rem;
-      border: 1px solid #E5E7EB;
-      border-radius: 0.5rem;
-      width: 300px;
-      font-size: 0.9rem;
+      padding: 0.75rem 1.25rem;
+      border: 2px solid #E8E5DD;
+      border-radius: 16px;
+      width: 320px;
+      font-size: 0.9375rem;
+      font-family: 'DM Sans', sans-serif;
+      background: #FFFEF9;
+      transition: all 0.2s ease;
     }
 
+    .search-box:focus {
+      outline: none;
+      border-color: #D4AF37;
+      background: #FFFFFF;
+      box-shadow: 0 0 0 4px rgba(212, 175, 55, 0.1);
+    }
+
+    /* Buttons - Softer, Friendlier */
     .btn {
-      padding: 0.625rem 1.25rem;
+      padding: 0.75rem 1.5rem;
       border: none;
-      border-radius: 0.5rem;
-      font-weight: 500;
+      border-radius: 14px;
+      font-weight: 600;
       cursor: pointer;
-      transition: all 0.2s;
-      font-size: 0.9rem;
+      transition: all 0.2s ease;
+      font-size: 0.9375rem;
+      font-family: 'DM Sans', sans-serif;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
     }
 
     .btn-primary {
-      background: #002664;
+      background: linear-gradient(135deg, #002664 0%, #003880 100%);
       color: white;
     }
 
     .btn-primary:hover {
-      background: #0A3D91;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0, 38, 100, 0.25);
     }
 
     .btn-secondary {
-      background: #F8FAFC;
-      color: #6B7280;
-      border: 1px solid #E5E7EB;
+      background: #FFFFFF;
+      color: #4A4A4A;
+      border: 2px solid #E8E5DD;
     }
 
     .btn-secondary:hover {
-      background: #E5E7EB;
+      background: #FFFEF9;
+      border-color: #D4D4D4;
+      transform: translateY(-1px);
     }
 
     .btn-danger {
-      background: #DC2626;
+      background: linear-gradient(135deg, #DC2626 0%, #B91C1C 100%);
       color: white;
     }
 
     .btn-danger:hover {
-      background: #B91C1C;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(220, 38, 38, 0.3);
     }
 
     .btn-small {
-      padding: 0.375rem 0.75rem;
-      font-size: 0.8rem;
+      padding: 0.5rem 1rem;
+      font-size: 0.875rem;
     }
 
     .content {
-      padding: 2rem;
+      padding: 2.5rem;
+      max-width: 1400px;
     }
 
+    /* Cards - Warm, Organic */
     .card {
-      background: white;
-      border-radius: 0.75rem;
-      padding: 1.5rem;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
-      border: 1px solid #E5E7EB;
+      background: #FFFFFF;
+      border-radius: 20px;
+      padding: 2rem;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.04), 0 1px 3px rgba(0,0,0,0.02);
+      border: 1px solid #F5F3ED;
       margin-bottom: 1.5rem;
+      transition: all 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.06), 0 2px 6px rgba(0,0,0,0.03);
     }
 
     .card-title {
-      font-size: 1.125rem;
-      margin-bottom: 1rem;
-      color: #111827;
+      font-size: 1.25rem;
+      margin-bottom: 1.5rem;
+      color: #1A1A1A;
+      font-weight: 700;
     }
 
     .grid {
@@ -186,94 +238,117 @@
       grid-template-columns: repeat(3, 1fr);
     }
 
-    /* Public Pages */
+    /* Public Pages - Welcoming */
     .public-container {
       min-height: 100vh;
       display: flex;
       align-items: center;
       justify-content: center;
-      background: linear-gradient(135deg, #002664 0%, #0A3D91 100%);
+      background: linear-gradient(135deg, #002664 0%, #003880 50%, #004A99 100%);
+      position: relative;
+    }
+
+    .public-container::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: radial-gradient(circle at 30% 50%, rgba(212, 175, 55, 0.1) 0%, transparent 50%);
     }
 
     .public-card {
-      background: white;
-      border-radius: 1rem;
+      background: #FFFFFF;
+      border-radius: 24px;
       padding: 3rem;
       width: 90%;
       max-width: 480px;
       box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+      border: 1px solid rgba(255,255,255,0.1);
+      position: relative;
     }
 
     .public-logo {
       text-align: center;
-      margin-bottom: 2rem;
+      margin-bottom: 2.5rem;
     }
 
     .public-logo h1 {
-      font-size: 2rem;
-      color: #002664;
+      font-size: 2.25rem;
+      background: linear-gradient(135deg, #002664 0%, #003880 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
       margin-bottom: 0.5rem;
+      font-family: 'Fraunces', serif;
     }
 
     .public-logo p {
       color: #6B7280;
+      font-size: 1rem;
     }
 
     .form-group {
-      margin-bottom: 1.25rem;
+      margin-bottom: 1.5rem;
     }
 
     .form-group label {
       display: block;
-      margin-bottom: 0.5rem;
-      color: #111827;
-      font-weight: 500;
-      font-size: 0.9rem;
+      margin-bottom: 0.625rem;
+      color: #1A1A1A;
+      font-weight: 600;
+      font-size: 0.9375rem;
     }
 
     .form-group input,
     .form-group select,
     .form-group textarea {
       width: 100%;
-      padding: 0.75rem;
-      border: 1px solid #E5E7EB;
-      border-radius: 0.5rem;
+      padding: 0.875rem 1.125rem;
+      border: 2px solid #E8E5DD;
+      border-radius: 14px;
       font-size: 1rem;
-      font-family: inherit;
+      font-family: 'DM Sans', sans-serif;
+      background: #FFFEF9;
+      transition: all 0.2s ease;
     }
 
     .form-group input[type="date"],
     .form-group input[type="time"] {
-      padding: 0.75rem;
-      font-size: 1rem;
+      padding: 0.875rem 1.125rem;
     }
 
     .form-group input:focus,
     .form-group select:focus,
     .form-group textarea:focus {
       outline: none;
-      border-color: #002664;
-      box-shadow: 0 0 0 3px rgba(0, 38, 100, 0.1);
+      border-color: #D4AF37;
+      background: #FFFFFF;
+      box-shadow: 0 0 0 4px rgba(212, 175, 55, 0.1);
     }
 
     .error-message {
       color: #DC2626;
-      font-size: 0.85rem;
+      font-size: 0.875rem;
       margin-top: 0.5rem;
+      font-weight: 500;
     }
 
     .success-message {
       color: #059669;
-      font-size: 0.85rem;
+      font-size: 0.875rem;
       margin-top: 0.5rem;
+      font-weight: 500;
     }
 
     .link {
       color: #002664;
       text-decoration: none;
+      font-weight: 600;
     }
 
     .link:hover {
+      color: #003880;
       text-decoration: underline;
     }
 
@@ -286,25 +361,26 @@
     .mb-1 { margin-bottom: 1rem; }
     .mb-2 { margin-bottom: 2rem; }
 
-    /* Toast */
+    /* Toast - Friendly */
     .toast {
       position: fixed;
       top: 2rem;
       right: 2rem;
-      background: white;
-      padding: 1rem 1.5rem;
-      border-radius: 0.5rem;
-      box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+      background: #FFFFFF;
+      padding: 1.125rem 1.5rem;
+      border-radius: 16px;
+      box-shadow: 0 12px 40px rgba(0,0,0,0.15), 0 4px 12px rgba(0,0,0,0.1);
       z-index: 9999;
       display: flex;
       align-items: center;
-      gap: 0.75rem;
-      border-left: 4px solid #059669;
+      gap: 0.875rem;
+      border: 2px solid #E8F5E9;
       animation: slideIn 0.3s ease;
+      font-weight: 500;
     }
 
     .toast.error {
-      border-left-color: #DC2626;
+      border-color: #FFEBEE;
     }
 
     @keyframes slideIn {
@@ -318,195 +394,282 @@
       }
     }
 
-    /* Badge */
+    /* Badges - Softer, Pill-ish */
     .badge {
       display: inline-block;
-      padding: 0.25rem 0.75rem;
-      border-radius: 9999px;
-      font-size: 0.75rem;
+      padding: 0.375rem 0.875rem;
+      border-radius: 12px;
+      font-size: 0.8125rem;
       font-weight: 600;
+      letter-spacing: 0.01em;
     }
 
     .badge-green {
-      background: #D1FAE5;
+      background: linear-gradient(135deg, #D1FAE5 0%, #A7F3D0 100%);
       color: #065F46;
+      border: 1px solid #6EE7B7;
     }
 
     .badge-yellow {
-      background: #FEF3C7;
+      background: linear-gradient(135deg, #FEF3C7 0%, #FDE68A 100%);
       color: #92400E;
+      border: 1px solid #FCD34D;
     }
 
     .badge-red {
-      background: #FEE2E2;
+      background: linear-gradient(135deg, #FEE2E2 0%, #FECACA 100%);
       color: #991B1B;
+      border: 1px solid #FCA5A5;
     }
 
     .badge-blue {
-      background: #DBEAFE;
+      background: linear-gradient(135deg, #DBEAFE 0%, #BFDBFE 100%);
       color: #1E40AF;
+      border: 1px solid #93C5FD;
     }
 
     .badge-gray {
-      background: #F3F4F6;
+      background: linear-gradient(135deg, #F3F4F6 0%, #E5E7EB 100%);
       color: #374151;
+      border: 1px solid #D1D5DB;
     }
 
-    /* Event Card */
+    /* Event Cards - Personal & Warm */
     .event-card {
-      background: white;
-      border: 1px solid #E5E7EB;
-      border-radius: 0.75rem;
-      padding: 1.25rem;
-      transition: all 0.2s;
+      background: linear-gradient(135deg, #FFFFFF 0%, #FFFEF9 100%);
+      border: 2px solid #F0EDE6;
+      border-radius: 18px;
+      padding: 1.5rem;
+      transition: all 0.3s ease;
       cursor: pointer;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .event-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 4px;
+      height: 100%;
+      background: linear-gradient(180deg, #D4AF37 0%, #B8941E 100%);
+      opacity: 0;
+      transition: opacity 0.3s ease;
     }
 
     .event-card:hover {
-      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-      transform: translateY(-2px);
+      border-color: #D4AF37;
+      transform: translateY(-4px);
+      box-shadow: 0 12px 32px rgba(0,0,0,0.08);
+    }
+
+    .event-card:hover::before {
+      opacity: 1;
     }
 
     .event-header {
       display: flex;
       justify-content: space-between;
       align-items: start;
-      margin-bottom: 0.75rem;
+      margin-bottom: 1rem;
     }
 
     .event-title {
       font-size: 1.125rem;
-      color: #111827;
-      font-weight: 600;
+      color: #1A1A1A;
+      font-weight: 700;
+      font-family: 'Fraunces', serif;
+      line-height: 1.3;
     }
 
     .event-meta {
       display: flex;
-      gap: 0.5rem;
-      margin-bottom: 0.5rem;
+      gap: 0.625rem;
+      margin-bottom: 0.875rem;
       flex-wrap: wrap;
     }
 
     .event-description {
       color: #6B7280;
-      font-size: 0.9rem;
-      margin-bottom: 0.75rem;
+      font-size: 0.9375rem;
+      margin-bottom: 1rem;
+      line-height: 1.6;
     }
 
     .event-footer {
       display: flex;
       justify-content: space-between;
       align-items: center;
+      padding-top: 1rem;
+      border-top: 1px solid #F5F3ED;
     }
 
-    /* Stats */
+    /* Stats - Friendly Numbers */
     .stat-card {
-      background: white;
-      border: 1px solid #E5E7EB;
-      border-radius: 0.75rem;
-      padding: 1.25rem;
+      background: linear-gradient(135deg, #FFFEF9 0%, #FFFFFF 100%);
+      border: 2px solid #F0EDE6;
+      border-radius: 18px;
+      padding: 1.75rem;
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+
+    .stat-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.06);
     }
 
     .stat-value {
-      font-size: 2rem;
+      font-size: 2.5rem;
       font-weight: 700;
-      color: #002664;
+      background: linear-gradient(135deg, #002664 0%, #003880 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-family: 'Fraunces', serif;
+      line-height: 1;
     }
 
     .stat-label {
       color: #6B7280;
       font-size: 0.875rem;
-      margin-top: 0.25rem;
+      margin-top: 0.5rem;
+      font-weight: 500;
     }
 
-    /* Modal */
+    /* Modal - Warm Overlay */
     .modal-overlay {
       position: fixed;
       top: 0;
       left: 0;
       right: 0;
       bottom: 0;
-      background: rgba(0,0,0,0.5);
+      background: rgba(0, 38, 100, 0.4);
+      backdrop-filter: blur(8px);
       display: flex;
       align-items: center;
       justify-content: center;
       z-index: 1000;
+      animation: fadeIn 0.2s ease;
     }
 
     .modal {
-      background: white;
-      border-radius: 1rem;
-      padding: 2rem;
+      background: #FFFFFF;
+      border-radius: 24px;
+      padding: 2.5rem;
       width: 90%;
       max-width: 600px;
       max-height: 90vh;
       overflow-y: auto;
+      box-shadow: 0 24px 80px rgba(0,0,0,0.2);
+      animation: modalSlideIn 0.3s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes modalSlideIn {
+      from {
+        transform: translateY(30px);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
     }
 
     .modal-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 1.5rem;
+      margin-bottom: 2rem;
+      padding-bottom: 1.25rem;
+      border-bottom: 2px solid #F5F3ED;
     }
 
     .modal-title {
-      font-size: 1.5rem;
-      color: #111827;
+      font-size: 1.75rem;
+      color: #1A1A1A;
+      font-family: 'Fraunces', serif;
     }
 
     .close-btn {
-      background: none;
+      background: #F5F3ED;
       border: none;
-      font-size: 1.5rem;
-      color: #6B7280;
+      width: 36px;
+      height: 36px;
+      border-radius: 12px;
+      font-size: 1.25rem;
+      color: #4A4A4A;
       cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s ease;
     }
 
     .close-btn:hover {
-      color: #111827;
+      background: #E8E5DD;
+      color: #1A1A1A;
+      transform: rotate(90deg);
     }
 
-    /* Quick Demo Login */
+    /* Demo Panel - Welcoming */
     .demo-panel {
-      background: #F8FAFC;
-      border: 1px solid #E5E7EB;
-      border-radius: 0.75rem;
-      padding: 1.5rem;
+      background: linear-gradient(135deg, #F8F7F4 0%, #FFFEF9 100%);
+      border: 2px solid #E8E5DD;
+      border-radius: 18px;
+      padding: 1.75rem;
       margin-top: 2rem;
     }
 
     .demo-panel h3 {
-      font-size: 0.9rem;
+      font-size: 0.75rem;
       color: #6B7280;
-      margin-bottom: 1rem;
+      margin-bottom: 1.125rem;
       text-transform: uppercase;
-      letter-spacing: 0.05em;
+      letter-spacing: 0.1em;
+      font-weight: 700;
+      font-family: 'DM Sans', sans-serif;
     }
 
     .demo-buttons {
       display: flex;
       flex-direction: column;
-      gap: 0.5rem;
+      gap: 0.75rem;
     }
 
-    /* Table */
+    /* Table - Clean */
     table {
       width: 100%;
       border-collapse: collapse;
     }
 
     th, td {
-      padding: 0.75rem;
+      padding: 1rem;
       text-align: left;
-      border-bottom: 1px solid #E5E7EB;
+      border-bottom: 1px solid #F5F3ED;
     }
 
     th {
-      background: #F8FAFC;
-      font-weight: 600;
-      color: #111827;
+      background: linear-gradient(135deg, #FFFEF9 0%, #F8F7F4 100%);
+      font-weight: 700;
+      color: #1A1A1A;
       font-size: 0.875rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      font-family: 'DM Sans', sans-serif;
+    }
+
+    tr:last-child td {
+      border-bottom: none;
+    }
+
+    tr:hover {
+      background: #FFFEF9;
     }
 
     /* Filters */
@@ -520,57 +683,76 @@
 
     .filters select,
     .filters input {
-      padding: 0.5rem 0.75rem;
-      border: 1px solid #E5E7EB;
-      border-radius: 0.5rem;
-      font-size: 0.9rem;
+      padding: 0.75rem 1rem;
+      border: 2px solid #E8E5DD;
+      border-radius: 14px;
+      font-size: 0.9375rem;
+      background: #FFFEF9;
+      font-family: 'DM Sans', sans-serif;
+      transition: all 0.2s ease;
+    }
+
+    .filters select:focus,
+    .filters input:focus {
+      background: #FFFFFF;
+      border-color: #D4AF37;
+      outline: none;
+      box-shadow: 0 0 0 4px rgba(212, 175, 55, 0.1);
     }
 
     .checkbox-label {
       display: flex;
       align-items: center;
-      gap: 0.5rem;
-      font-size: 0.9rem;
+      gap: 0.625rem;
+      font-size: 0.9375rem;
       cursor: pointer;
+      color: #4A4A4A;
+      font-weight: 500;
     }
 
-    /* Empty State */
+    /* Empty State - Friendly */
     .empty-state {
       text-align: center;
-      padding: 3rem 1rem;
+      padding: 4rem 1rem;
       color: #6B7280;
     }
 
     .empty-state-icon {
-      font-size: 3rem;
-      margin-bottom: 1rem;
-      opacity: 0.5;
+      font-size: 4rem;
+      margin-bottom: 1.5rem;
+      opacity: 0.3;
+      filter: grayscale(0.5);
     }
 
     /* Document Viewer */
     .doc-viewer {
-      background: #F8FAFC;
-      border: 1px solid #E5E7EB;
-      border-radius: 0.5rem;
-      padding: 2rem;
+      background: linear-gradient(135deg, #FFFEF9 0%, #FFFFFF 100%);
+      border: 2px solid #F0EDE6;
+      border-radius: 18px;
+      padding: 3rem;
       min-height: 600px;
-      font-family: Georgia, serif;
+      font-family: 'Georgia', serif;
       line-height: 1.8;
     }
 
     .doc-viewer h2 {
-      margin-bottom: 1.5rem;
-      color: #002664;
+      margin-bottom: 2rem;
+      background: linear-gradient(135deg, #002664 0%, #003880 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-size: 1.75rem;
     }
 
     .doc-viewer h3 {
-      margin-top: 1.5rem;
-      margin-bottom: 0.75rem;
-      color: #111827;
+      margin-top: 2rem;
+      margin-bottom: 1rem;
+      color: #1A1A1A;
+      font-size: 1.25rem;
     }
 
     .doc-viewer p {
       margin-bottom: 1rem;
+      color: #4A4A4A;
     }
 
     .version-history {
@@ -578,167 +760,231 @@
     }
 
     .version-item {
-      padding: 0.75rem;
-      background: #F8FAFC;
-      border: 1px solid #E5E7EB;
-      border-radius: 0.5rem;
-      margin-bottom: 0.5rem;
+      padding: 1rem 1.25rem;
+      background: #FFFEF9;
+      border: 2px solid #F0EDE6;
+      border-radius: 14px;
+      margin-bottom: 0.75rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
+      transition: all 0.2s ease;
+    }
+
+    .version-item:hover {
+      border-color: #D4AF37;
+      transform: translateX(4px);
     }
 
     .version-item.active {
-      background: #DBEAFE;
-      border-color: #002664;
+      background: linear-gradient(135deg, #EFF6FF 0%, #DBEAFE 100%);
+      border-color: #93C5FD;
     }
 
-    /* Chart */
+    /* Chart - Warm Gradient */
     .chart {
       display: flex;
       align-items: flex-end;
-      gap: 0.5rem;
+      gap: 0.75rem;
       height: 150px;
       padding: 1rem 0;
     }
 
     .chart-bar {
       flex: 1;
-      background: #002664;
-      border-radius: 0.25rem 0.25rem 0 0;
+      background: linear-gradient(180deg, #003880 0%, #002664 100%);
+      border-radius: 8px 8px 0 0;
       position: relative;
-      min-height: 4px;
+      min-height: 6px;
+      transition: all 0.3s ease;
+    }
+
+    .chart-bar:hover {
+      background: linear-gradient(180deg, #004A99 0%, #003880 100%);
+      transform: scaleY(1.05);
     }
 
     .chart-label {
-      font-size: 0.75rem;
+      font-size: 0.8125rem;
       text-align: center;
-      margin-top: 0.5rem;
+      margin-top: 0.625rem;
       color: #6B7280;
+      font-weight: 600;
     }
 
+    /* User Avatars - Friendly Circles */
     .user-avatar {
-      width: 32px;
-      height: 32px;
+      width: 36px;
+      height: 36px;
       border-radius: 50%;
-      background: #002664;
+      background: linear-gradient(135deg, #003880 0%, #002664 100%);
       color: white;
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      font-weight: 600;
+      font-weight: 700;
       font-size: 0.875rem;
+      border: 2px solid #FFFFFF;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
     }
 
     .attendee-list {
       display: flex;
       flex-wrap: wrap;
-      gap: 0.75rem;
-      margin-top: 1rem;
+      gap: 1rem;
+      margin-top: 1.5rem;
     }
 
     .attendee-item {
       display: flex;
       align-items: center;
-      gap: 0.5rem;
-      padding: 0.5rem 0.75rem;
-      background: #F8FAFC;
-      border: 1px solid #E5E7EB;
-      border-radius: 0.5rem;
-      font-size: 0.875rem;
+      gap: 0.75rem;
+      padding: 0.75rem 1.125rem;
+      background: linear-gradient(135deg, #FFFEF9 0%, #FFFFFF 100%);
+      border: 2px solid #F0EDE6;
+      border-radius: 16px;
+      font-size: 0.9375rem;
+      color: #4A4A4A;
+      font-weight: 500;
+      transition: all 0.2s ease;
+    }
+
+    .attendee-item:hover {
+      border-color: #D4AF37;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.06);
     }
 
     .divider {
       border: none;
-      border-top: 1px solid #E5E7EB;
-      margin: 1.5rem 0;
+      border-top: 2px solid #F5F3ED;
+      margin: 2rem 0;
     }
 
+    /* Announcements - Community Board Feel */
     .announcement-card {
-      background: white;
-      border: 1px solid #E5E7EB;
-      border-radius: 0.75rem;
-      padding: 1.25rem;
-      margin-bottom: 1rem;
+      background: linear-gradient(135deg, #FFFFFF 0%, #FFFEF9 100%);
+      border: 2px solid #F0EDE6;
+      border-radius: 18px;
+      padding: 1.75rem;
+      margin-bottom: 1.25rem;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .announcement-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 5px;
+      height: 100%;
+      background: linear-gradient(180deg, #002664 0%, #003880 100%);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .announcement-card:hover {
+      border-color: #D4AF37;
+      transform: translateX(4px);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+    }
+
+    .announcement-card:hover::before {
+      opacity: 1;
     }
 
     .announcement-card.urgent {
-      border-left: 4px solid #DC2626;
-      background: #FEF2F2;
+      border-left: 5px solid #DC2626;
+      background: linear-gradient(135deg, #FEF2F2 0%, #FEE2E2 100%);
     }
 
     .announcement-card.unread {
-      background: #F0F9FF;
-      border-left: 4px solid #002664;
+      background: linear-gradient(135deg, #EFF6FF 0%, #DBEAFE 100%);
+      border-left: 5px solid #002664;
     }
 
     .announcement-header {
       display: flex;
       justify-content: space-between;
       align-items: start;
-      margin-bottom: 0.75rem;
+      margin-bottom: 1rem;
     }
 
     .announcement-title {
-      font-size: 1.125rem;
-      color: #111827;
-      font-weight: 600;
+      font-size: 1.1875rem;
+      color: #1A1A1A;
+      font-weight: 700;
+      font-family: 'Fraunces', serif;
+      line-height: 1.3;
     }
 
     .announcement-meta {
-      font-size: 0.85rem;
+      font-size: 0.875rem;
       color: #6B7280;
-      margin-bottom: 0.5rem;
+      margin-bottom: 0.875rem;
+      font-weight: 500;
     }
 
     .announcement-body {
-      color: #374151;
-      line-height: 1.6;
+      color: #4A4A4A;
+      line-height: 1.7;
+      font-size: 0.9375rem;
     }
 
     .read-rate {
-      margin-top: 0.75rem;
-      padding-top: 0.75rem;
-      border-top: 1px solid #E5E7EB;
-      font-size: 0.85rem;
+      margin-top: 1.125rem;
+      padding-top: 1.125rem;
+      border-top: 2px solid #F5F3ED;
+      font-size: 0.875rem;
       color: #6B7280;
+      font-weight: 500;
     }
 
+    /* Profile - Personal Touch */
     .profile-section {
-      background: white;
-      border: 1px solid #E5E7EB;
-      border-radius: 0.75rem;
-      padding: 1.5rem;
+      background: linear-gradient(135deg, #FFFFFF 0%, #FFFEF9 100%);
+      border: 2px solid #F0EDE6;
+      border-radius: 20px;
+      padding: 2.5rem;
       margin-bottom: 1.5rem;
     }
 
     .profile-header {
       display: flex;
       align-items: center;
-      gap: 1.5rem;
-      margin-bottom: 2rem;
+      gap: 2rem;
+      margin-bottom: 2.5rem;
+      padding-bottom: 2rem;
+      border-bottom: 2px solid #F5F3ED;
     }
 
     .profile-avatar {
-      width: 80px;
-      height: 80px;
+      width: 88px;
+      height: 88px;
       border-radius: 50%;
-      background: #002664;
+      background: linear-gradient(135deg, #003880 0%, #002664 100%);
       color: white;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 2rem;
+      font-size: 2.25rem;
       font-weight: 700;
+      border: 4px solid #FFFFFF;
+      box-shadow: 0 8px 24px rgba(0, 38, 100, 0.2);
     }
 
     .profile-info h2 {
-      margin-bottom: 0.25rem;
+      margin-bottom: 0.375rem;
+      font-size: 1.75rem;
     }
 
     .profile-role {
       color: #6B7280;
-      font-size: 0.9rem;
+      font-size: 1rem;
+      font-weight: 500;
     }
 
     .hidden {
@@ -749,20 +995,25 @@
       position: fixed;
       bottom: 2rem;
       right: 2rem;
-      width: 40px;
-      height: 40px;
-      background: #F3F4F6;
+      width: 48px;
+      height: 48px;
+      background: linear-gradient(135deg, #FFFFFF 0%, #FFFEF9 100%);
+      border: 2px solid #E8E5DD;
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
       cursor: pointer;
-      opacity: 0.3;
-      transition: opacity 0.2s;
+      opacity: 0.4;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+      font-size: 1.25rem;
     }
 
     .settings-icon:hover {
-      opacity: 0.6;
+      opacity: 1;
+      transform: scale(1.1) rotate(90deg);
+      border-color: #D4AF37;
     }
 
     @media (max-width: 1024px) {
@@ -786,6 +1037,12 @@
       .grid-3 {
         grid-template-columns: 1fr;
       }
+      .content {
+        padding: 1.5rem;
+      }
+      .header {
+        padding: 1.5rem;
+      }
     }
   </style>
 </head>
@@ -805,6 +1062,50 @@
       EVENTS: 'dormops_events',
       ANNOUNCEMENTS: 'dormops_announcements',
       DOCUMENTS: 'dormops_documents'
+    };
+
+    // Data Access Layer - centralizes all localStorage operations
+    // This makes it easy to switch to a real database later
+    const DB = {
+      // Events
+      getEvents() {
+        return JSON.parse(localStorage.getItem('dormops_events')) || [];
+      },
+      
+      saveEvents(events) {
+        localStorage.setItem('dormops_events', JSON.stringify(events));
+        return events;
+      },
+      
+      // Announcements
+      getAnnouncements() {
+        return JSON.parse(localStorage.getItem('dormops_announcements')) || [];
+      },
+      
+      saveAnnouncements(announcements) {
+        localStorage.setItem('dormops_announcements', JSON.stringify(announcements));
+        return announcements;
+      },
+      
+      // Users
+      getUsers() {
+        return JSON.parse(localStorage.getItem('dormops_users')) || [];
+      },
+      
+      saveUsers(users) {
+        localStorage.setItem('dormops_users', JSON.stringify(users));
+        return users;
+      },
+      
+      // Documents
+      getDocuments() {
+        return JSON.parse(localStorage.getItem('dormops_documents')) || {};
+      },
+      
+      saveDocuments(docs) {
+        localStorage.setItem('dormops_documents', JSON.stringify(docs));
+        return docs;
+      }
     };
 
     function initStorage() {
@@ -863,7 +1164,7 @@
             type: 'Mandatory',
             dorm: 'Both',
             date: '2026-02-15',
-            time: '7:00 PM',
+            time: '19:00',
             location: 'Library',
             description: 'Mandatory study time for all students',
             capacity: null,
@@ -876,7 +1177,7 @@
             type: 'Athletics',
             dorm: 'Cantwell',
             date: '2026-02-16',
-            time: '4:00 PM',
+            time: '16:00',
             location: 'Gymnasium',
             description: 'Weekly basketball practice session',
             capacity: null,
@@ -889,7 +1190,7 @@
             type: 'Weekend Trip',
             dorm: 'Both',
             date: '2026-02-21',
-            time: '9:00 AM',
+            time: '09:00',
             location: 'Malibu Beach',
             description: 'Beach day trip with lunch included',
             capacity: 18,
@@ -904,7 +1205,7 @@
             type: 'Service',
             dorm: 'Both',
             date: '2026-02-18',
-            time: '2:00 PM',
+            time: '14:00',
             location: 'Local Food Bank',
             description: 'Volunteer at the community food bank',
             capacity: 25,
@@ -917,7 +1218,7 @@
             type: 'Social',
             dorm: 'Cantwell',
             date: '2026-02-17',
-            time: '8:00 PM',
+            time: '20:00',
             location: 'Cantwell Common Room',
             description: 'Movie night with popcorn and snacks',
             capacity: 30,
@@ -930,7 +1231,7 @@
             type: 'Mandatory',
             dorm: 'Cantwell',
             date: '2026-02-14',
-            time: '9:15 PM',
+            time: '21:15',
             location: 'Cantwell Common Room',
             description: 'Important announcements about upcoming schedule changes',
             capacity: null,
@@ -943,7 +1244,7 @@
             type: 'Wellness',
             dorm: 'Glynn',
             date: '2026-02-16',
-            time: '5:30 PM',
+            time: '17:30',
             location: 'Glynn Multipurpose Room',
             description: 'Relaxing yoga session for stress relief',
             capacity: 20,
@@ -956,7 +1257,7 @@
             type: 'Weekend Trip',
             dorm: 'Both',
             date: '2026-02-22',
-            time: '8:00 AM',
+            time: '08:00',
             location: 'Santa Barbara Trails',
             description: 'Guided hiking trip with packed lunch',
             capacity: 12,
@@ -1148,6 +1449,9 @@
         .replace(/"/g, "&quot;")
         .replace(/'/g, "&#039;");
     }
+
+    // ===== DEBOUNCE TIMER =====
+    let searchDebounceTimer = null;
 
     // ===== ROUTER =====
     let currentRoute = '';
@@ -1743,8 +2047,16 @@
     }
 
     window.filterEvents = function() {
-      const events = JSON.parse(localStorage.getItem(STORAGE_KEYS.EVENTS));
-      document.getElementById('eventsList').innerHTML = renderEventsList(events);
+      // Cancel any existing timer to avoid duplicate renders
+      if (searchDebounceTimer) {
+        clearTimeout(searchDebounceTimer);
+      }
+      
+      // Wait 300ms after user stops typing before filtering
+      searchDebounceTimer = setTimeout(() => {
+        const events = DB.getEvents();
+        document.getElementById('eventsList').innerHTML = renderEventsList(events);
+      }, 300);
     }
 
     function getCapacityBadge(event) {
@@ -1825,7 +2137,7 @@
 
             ${state.user.role === 'staff' || state.user.role === 'admin' ? `
               <div class="mt-2" style="padding-top: 1rem; border-top: 1px solid #E5E7EB;">
-                <button class="btn btn-danger btn-small" onclick="deleteEvent('${event.id}')">Delete Event</button>
+                <button type="button" class="btn btn-danger btn-small" id="deleteEventBtn${event.id}">Delete Event</button>
               </div>
             ` : ''}
 
@@ -1859,6 +2171,28 @@
       `;
 
       renderApp(content);
+      
+      // Attach delete event listener if user is staff/admin
+      if (state.user.role === 'staff' || state.user.role === 'admin') {
+        const deleteBtn = document.getElementById('deleteEventBtn' + event.id);
+        
+        if (deleteBtn) {
+          deleteBtn.onclick = function() {
+            const events = JSON.parse(localStorage.getItem('dormops_events'));
+            const filtered = events.filter(e => e.id !== event.id);
+            localStorage.setItem('dormops_events', JSON.stringify(filtered));
+            
+            showToast('Event deleted successfully');
+            
+            setTimeout(() => {
+              window.location.hash = '#/events';
+              window.location.reload();
+            }, 800);
+          };
+          
+          deleteBtn.textContent = 'Delete Event';
+        }
+      }
     }
 
     window.signupEvent = function(eventId) {
@@ -1886,9 +2220,7 @@
     }
 
     window.cancelSignup = function(eventId) {
-      if (!confirm('Are you sure you want to cancel?')) return;
-      
-      const events = JSON.parse(localStorage.getItem(STORAGE_KEYS.EVENTS));
+      const events = JSON.parse(localStorage.getItem('dormops_events'));
       const event = events.find(e => e.id === eventId);
       
       const confirmedIndex = event.confirmed.indexOf(state.user.id);
@@ -1910,7 +2242,7 @@
         showToast('Removed from waitlist');
       }
       
-      localStorage.setItem(STORAGE_KEYS.EVENTS, JSON.stringify(events));
+      localStorage.setItem('dormops_events', JSON.stringify(events));
       handleRoute();
     }
 
@@ -1920,7 +2252,7 @@
       }
       
       try {
-        const events = JSON.parse(localStorage.getItem(STORAGE_KEYS.EVENTS));
+        const events = JSON.parse(localStorage.getItem('dormops_events'));
         const eventIndex = events.findIndex(e => e.id === eventId);
         
         if (eventIndex === -1) {
@@ -1932,11 +2264,10 @@
         events.splice(eventIndex, 1);
         
         // Save back to localStorage
-        localStorage.setItem(STORAGE_KEYS.EVENTS, JSON.stringify(events));
+        localStorage.setItem('dormops_events', JSON.stringify(events));
         
         showToast('Event deleted successfully');
-        navigate('/events');
-        handleRoute();
+        window.history.back();
       } catch (err) {
         console.error('Delete event error:', err);
         showToast('Failed to delete event', 'error');
@@ -2667,48 +2998,95 @@
       const result = {};
       const lower = text.toLowerCase();
       
-      // Type detection
-      if (lower.includes('mandatory') || lower.includes('required')) result.type = 'Mandatory';
-      else if (lower.includes('basketball') || lower.includes('practice') || lower.includes('game') || lower.includes('athletic')) result.type = 'Athletics';
-      else if (lower.includes('trip') || lower.includes('beach') || lower.includes('malibu') || lower.includes('hike')) result.type = 'Weekend Trip';
-      else if (lower.includes('service') || lower.includes('volunteer') || lower.includes('food bank')) result.type = 'Service';
-      else if (lower.includes('movie') || lower.includes('social') || lower.includes('party')) result.type = 'Social';
-      else if (lower.includes('yoga') || lower.includes('wellness') || lower.includes('meditation')) result.type = 'Wellness';
-      
-      // Dorm detection
-      if (lower.includes('cantwell')) result.dorm = 'Cantwell';
-      else if (lower.includes('glynn')) result.dorm = 'Glynn';
-      else if (lower.includes('both') || lower.includes('all')) result.dorm = 'Both';
-      else if (!lower.includes('cantwell') && !lower.includes('glynn')) result.dorm = 'Both'; // default
-      
-      // Title extraction (first few words or key phrase)
-      let titleMatch = text.match(/^([^,.!?]{5,50})/);
-      if (titleMatch) {
-        result.title = titleMatch[1].trim().replace(/\b\w/g, l => l.toUpperCase());
+      // Smart type detection with broader keywords
+      if (lower.includes('mandatory') || lower.includes('required') || lower.includes('must attend') || lower.includes('hall meeting') || lower.includes('dorm meeting')) {
+        result.type = 'Mandatory';
+      } else if (lower.includes('basketball') || lower.includes('practice') || lower.includes('game') || lower.includes('athletic') || lower.includes('sport') || lower.includes('workout') || lower.includes('training')) {
+        result.type = 'Athletics';
+      } else if (lower.includes('trip') || lower.includes('beach') || lower.includes('malibu') || lower.includes('hike') || lower.includes('excursion') || lower.includes('outing') || lower.includes('saturday') || lower.includes('sunday')) {
+        result.type = 'Weekend Trip';
+      } else if (lower.includes('service') || lower.includes('volunteer') || lower.includes('food bank') || lower.includes('community') || lower.includes('charity')) {
+        result.type = 'Service';
+      } else if (lower.includes('movie') || lower.includes('social') || lower.includes('party') || lower.includes('game night') || lower.includes('pizza') || lower.includes('fun')) {
+        result.type = 'Social';
+      } else if (lower.includes('yoga') || lower.includes('wellness') || lower.includes('meditation') || lower.includes('mindful') || lower.includes('relax')) {
+        result.type = 'Wellness';
+      } else {
+        // Default guess based on context clues
+        if (lower.includes('night') || lower.includes('tonight')) result.type = 'Social';
+        else if (lower.includes('meet')) result.type = 'Mandatory';
+        else result.type = 'Social'; // Safe default
       }
       
-      // Location detection
-      const locationKeywords = ['common room', 'gymnasium', 'gym', 'library', 'cafeteria', 'field', 'gate', 'beach', 'multipurpose room'];
-      for (const keyword of locationKeywords) {
+      // Smart dorm detection with partial matching
+      if (lower.includes('cantwell') || lower.includes('cant')) result.dorm = 'Cantwell';
+      else if (lower.includes('glynn')) result.dorm = 'Glynn';
+      else if (lower.includes('both') || lower.includes('all') || lower.includes('everyone') || lower.includes('whole school')) result.dorm = 'Both';
+      else result.dorm = 'Both'; // Default to Both if unclear
+      
+      // Intelligent title extraction with cleanup
+      let titleMatch = text.match(/^([^,.!?]{5,60})/);
+      if (titleMatch) {
+        let title = titleMatch[1].trim();
+        // Remove time references from title
+        title = title.replace(/\b\d{1,2}:\d{2}\s*(am|pm)?\b/gi, '');
+        title = title.replace(/\b(tonight|today|tomorrow|this|next)\b/gi, '');
+        title = title.trim();
+        // Capitalize properly
+        result.title = title.replace(/\b\w/g, l => l.toUpperCase());
+      }
+      
+      // If no good title found, generate one from type
+      if (!result.title || result.title.length < 5) {
+        result.title = result.type + ' Event';
+      }
+      
+      // Enhanced location detection with common variants
+      const locationKeywords = {
+        'common room': 'Common Room',
+        'commons': 'Common Room',
+        'lounge': 'Common Room',
+        'gymnasium': 'Gymnasium',
+        'gym': 'Gymnasium',
+        'library': 'Library',
+        'cafeteria': 'Cafeteria',
+        'dining hall': 'Cafeteria',
+        'field': 'Athletic Field',
+        'gate': 'Front Gate',
+        'beach': 'Beach',
+        'malibu': 'Malibu Beach',
+        'multipurpose': 'Multipurpose Room',
+        'chapel': 'Chapel',
+        'auditorium': 'Auditorium'
+      };
+      
+      for (const [keyword, location] of Object.entries(locationKeywords)) {
         if (lower.includes(keyword)) {
-          result.location = keyword.split(' ').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
+          result.location = location;
           break;
         }
       }
       
-      // Capacity extraction
-      const capMatch = text.match(/capacity\s*[:=]?\s*(\d+)|(\d+)\s*spots?|(\d+)\s*people/i);
-      if (capMatch) {
-        const cap = parseInt(capMatch[1] || capMatch[2] || capMatch[3]);
-        if (cap > 0) result.capacity = cap;
+      // Default location if none found
+      if (!result.location) {
+        if (result.dorm === 'Cantwell') result.location = 'Cantwell Common Room';
+        else if (result.dorm === 'Glynn') result.location = 'Glynn Common Room';
+        else result.location = 'Main Hall';
       }
       
-      // Time extraction (HH:MM format or common formats)
-      const timeMatch = text.match(/(\d{1,2}):(\d{2})\s*(am|pm)?|(\d{1,2})\s*(am|pm)/i);
+      // Capacity extraction with multiple patterns
+      const capMatch = text.match(/capacity\s*[:=]?\s*(\d+)|(\d+)\s*spots?|(\d+)\s*people|(\d+)\s*students|limit\s*[:=]?\s*(\d+)|max\s*[:=]?\s*(\d+)/i);
+      if (capMatch) {
+        const cap = parseInt(capMatch[1] || capMatch[2] || capMatch[3] || capMatch[4] || capMatch[5] || capMatch[6]);
+        if (cap > 0 && cap < 500) result.capacity = cap;
+      }
+      
+      // Enhanced time extraction with more formats
+      const timeMatch = text.match(/(\d{1,2}):(\d{2})\s*(am|pm)?|(\d{1,2})\s*(am|pm)|(\d{1,2})pm|(\d{1,2})am/i);
       if (timeMatch) {
-        let hours = parseInt(timeMatch[1] || timeMatch[4]);
+        let hours = parseInt(timeMatch[1] || timeMatch[4] || timeMatch[6] || timeMatch[7]);
         const minutes = timeMatch[2] || '00';
-        const meridiem = (timeMatch[3] || timeMatch[5] || '').toLowerCase();
+        const meridiem = (timeMatch[3] || timeMatch[5] || (timeMatch[6] ? 'pm' : '') || (timeMatch[7] ? 'am' : '')).toLowerCase();
         
         if (meridiem === 'pm' && hours !== 12) hours += 12;
         if (meridiem === 'am' && hours === 12) hours = 0;
@@ -2716,26 +3094,66 @@
         if (hours >= 0 && hours <= 23) {
           result.time = hours.toString().padStart(2, '0') + ':' + minutes;
         }
+      } else {
+        // Smart default times based on event type
+        if (result.type === 'Mandatory') result.time = '19:00'; // 7pm
+        else if (result.type === 'Social') result.time = '20:00'; // 8pm
+        else if (result.type === 'Weekend Trip') result.time = '09:00'; // 9am
+        else if (result.type === 'Athletics') result.time = '16:00'; // 4pm
       }
       
-      // Date extraction (simple patterns only - skip relative dates)
+      // Enhanced date extraction with relative dates
       const dateMatch = text.match(/(\d{1,2})\/(\d{1,2})\/(\d{2,4})|(\d{4})-(\d{2})-(\d{2})/);
       if (dateMatch) {
         if (dateMatch[4]) {
-          // YYYY-MM-DD format
           result.date = `${dateMatch[4]}-${dateMatch[5]}-${dateMatch[6]}`;
         } else {
-          // M/D/YYYY format
           const month = dateMatch[1].padStart(2, '0');
           const day = dateMatch[2].padStart(2, '0');
           let year = dateMatch[3];
           if (year.length === 2) year = '20' + year;
           result.date = `${year}-${month}-${day}`;
         }
+      } else {
+        // Parse relative dates
+        const today = new Date();
+        
+        if (lower.includes('tonight') || lower.includes('today')) {
+          result.date = today.toISOString().split('T')[0];
+        } else if (lower.includes('tomorrow')) {
+          const tomorrow = new Date(today);
+          tomorrow.setDate(tomorrow.getDate() + 1);
+          result.date = tomorrow.toISOString().split('T')[0];
+        } else if (lower.includes('this weekend') || lower.includes('saturday')) {
+          // Find next Saturday
+          const daysUntilSaturday = (6 - today.getDay() + 7) % 7 || 7;
+          const saturday = new Date(today);
+          saturday.setDate(saturday.getDate() + daysUntilSaturday);
+          result.date = saturday.toISOString().split('T')[0];
+        } else if (lower.includes('sunday')) {
+          // Find next Sunday
+          const daysUntilSunday = (7 - today.getDay()) % 7 || 7;
+          const sunday = new Date(today);
+          sunday.setDate(sunday.getDate() + daysUntilSunday);
+          result.date = sunday.toISOString().split('T')[0];
+        } else if (lower.includes('next week')) {
+          const nextWeek = new Date(today);
+          nextWeek.setDate(nextWeek.getDate() + 7);
+          result.date = nextWeek.toISOString().split('T')[0];
+        } else {
+          // Default to tomorrow if no date found
+          const tomorrow = new Date(today);
+          tomorrow.setDate(tomorrow.getDate() + 1);
+          result.date = tomorrow.toISOString().split('T')[0];
+        }
       }
       
-      // Description (use full text, cleaned)
-      result.description = text.trim();
+      // Smart description - use full text or generate one
+      if (text.length > 15) {
+        result.description = text.trim();
+      } else {
+        result.description = `${result.type} event at ${result.location}`;
+      }
       
       return result;
     }
