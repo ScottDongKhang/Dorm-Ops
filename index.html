@@ -1823,6 +1823,12 @@
               `}
             </div>
 
+            ${state.user.role === 'staff' || state.user.role === 'admin' ? `
+              <div class="mt-2" style="padding-top: 1rem; border-top: 1px solid #E5E7EB;">
+                <button class="btn btn-danger btn-small" onclick="deleteEvent('${event.id}')">Delete Event</button>
+              </div>
+            ` : ''}
+
             ${confirmedUsers.length > 0 ? `
               <hr class="divider">
               <h3>Who's Going (${confirmedUsers.length})</h3>
@@ -1906,6 +1912,35 @@
       
       localStorage.setItem(STORAGE_KEYS.EVENTS, JSON.stringify(events));
       handleRoute();
+    }
+
+    window.deleteEvent = function(eventId) {
+      if (!confirm('Are you sure you want to delete this event? This cannot be undone.')) {
+        return;
+      }
+      
+      try {
+        const events = JSON.parse(localStorage.getItem(STORAGE_KEYS.EVENTS));
+        const eventIndex = events.findIndex(e => e.id === eventId);
+        
+        if (eventIndex === -1) {
+          console.warn('Event not found:', eventId);
+          return;
+        }
+        
+        // Remove event from array
+        events.splice(eventIndex, 1);
+        
+        // Save back to localStorage
+        localStorage.setItem(STORAGE_KEYS.EVENTS, JSON.stringify(events));
+        
+        showToast('Event deleted successfully');
+        navigate('/events');
+        handleRoute();
+      } catch (err) {
+        console.error('Delete event error:', err);
+        showToast('Failed to delete event', 'error');
+      }
     }
 
     // ===== MY =====
