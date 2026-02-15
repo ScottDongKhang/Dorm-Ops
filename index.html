@@ -1,0 +1,2877 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dorm Ops – Villanova Preparatory School</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: #F8FAFC;
+      color: #6B7280;
+      line-height: 1.6;
+    }
+
+    h1, h2, h3, h4 {
+      color: #111827;
+      font-weight: 600;
+    }
+
+    .app-container {
+      display: flex;
+      min-height: 100vh;
+    }
+
+    /* Sidebar */
+    .sidebar {
+      width: 240px;
+      background: #002664;
+      color: white;
+      padding: 2rem 0;
+      position: fixed;
+      height: 100vh;
+      left: 0;
+      top: 0;
+    }
+
+    .sidebar-logo {
+      padding: 0 1.5rem 2rem;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: white;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      margin-bottom: 1rem;
+    }
+
+    .sidebar-nav a {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.75rem 1.5rem;
+      color: rgba(255,255,255,0.8);
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+
+    .sidebar-nav a:hover,
+    .sidebar-nav a.active {
+      background: #0A3D91;
+      color: white;
+    }
+
+    .sidebar-nav .icon {
+      width: 20px;
+      height: 20px;
+      display: inline-block;
+    }
+
+    /* Main Content */
+    .main-content {
+      margin-left: 240px;
+      flex: 1;
+      min-height: 100vh;
+    }
+
+    .header {
+      background: white;
+      padding: 1.5rem 2rem;
+      border-bottom: 1px solid #E5E7EB;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .header-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .header h1 {
+      font-size: 1.75rem;
+    }
+
+    .header-actions {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+    }
+
+    .search-box {
+      padding: 0.5rem 1rem;
+      border: 1px solid #E5E7EB;
+      border-radius: 0.5rem;
+      width: 300px;
+      font-size: 0.9rem;
+    }
+
+    .btn {
+      padding: 0.625rem 1.25rem;
+      border: none;
+      border-radius: 0.5rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-size: 0.9rem;
+    }
+
+    .btn-primary {
+      background: #002664;
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background: #0A3D91;
+    }
+
+    .btn-secondary {
+      background: #F8FAFC;
+      color: #6B7280;
+      border: 1px solid #E5E7EB;
+    }
+
+    .btn-secondary:hover {
+      background: #E5E7EB;
+    }
+
+    .btn-danger {
+      background: #DC2626;
+      color: white;
+    }
+
+    .btn-danger:hover {
+      background: #B91C1C;
+    }
+
+    .btn-small {
+      padding: 0.375rem 0.75rem;
+      font-size: 0.8rem;
+    }
+
+    .content {
+      padding: 2rem;
+    }
+
+    .card {
+      background: white;
+      border-radius: 0.75rem;
+      padding: 1.5rem;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+      border: 1px solid #E5E7EB;
+      margin-bottom: 1.5rem;
+    }
+
+    .card-title {
+      font-size: 1.125rem;
+      margin-bottom: 1rem;
+      color: #111827;
+    }
+
+    .grid {
+      display: grid;
+      gap: 1.5rem;
+    }
+
+    .grid-2 {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .grid-3 {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    /* Public Pages */
+    .public-container {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #002664 0%, #0A3D91 100%);
+    }
+
+    .public-card {
+      background: white;
+      border-radius: 1rem;
+      padding: 3rem;
+      width: 90%;
+      max-width: 480px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    }
+
+    .public-logo {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .public-logo h1 {
+      font-size: 2rem;
+      color: #002664;
+      margin-bottom: 0.5rem;
+    }
+
+    .public-logo p {
+      color: #6B7280;
+    }
+
+    .form-group {
+      margin-bottom: 1.25rem;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 0.5rem;
+      color: #111827;
+      font-weight: 500;
+      font-size: 0.9rem;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: 0.75rem;
+      border: 1px solid #E5E7EB;
+      border-radius: 0.5rem;
+      font-size: 1rem;
+      font-family: inherit;
+    }
+
+    .form-group input[type="date"],
+    .form-group input[type="time"] {
+      padding: 0.75rem;
+      font-size: 1rem;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: #002664;
+      box-shadow: 0 0 0 3px rgba(0, 38, 100, 0.1);
+    }
+
+    .error-message {
+      color: #DC2626;
+      font-size: 0.85rem;
+      margin-top: 0.5rem;
+    }
+
+    .success-message {
+      color: #059669;
+      font-size: 0.85rem;
+      margin-top: 0.5rem;
+    }
+
+    .link {
+      color: #002664;
+      text-decoration: none;
+    }
+
+    .link:hover {
+      text-decoration: underline;
+    }
+
+    .text-center {
+      text-align: center;
+    }
+
+    .mt-1 { margin-top: 1rem; }
+    .mt-2 { margin-top: 2rem; }
+    .mb-1 { margin-bottom: 1rem; }
+    .mb-2 { margin-bottom: 2rem; }
+
+    /* Toast */
+    .toast {
+      position: fixed;
+      top: 2rem;
+      right: 2rem;
+      background: white;
+      padding: 1rem 1.5rem;
+      border-radius: 0.5rem;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      border-left: 4px solid #059669;
+      animation: slideIn 0.3s ease;
+    }
+
+    .toast.error {
+      border-left-color: #DC2626;
+    }
+
+    @keyframes slideIn {
+      from {
+        transform: translateX(400px);
+        opacity: 0;
+      }
+      to {
+        transform: translateX(0);
+        opacity: 1;
+      }
+    }
+
+    /* Badge */
+    .badge {
+      display: inline-block;
+      padding: 0.25rem 0.75rem;
+      border-radius: 9999px;
+      font-size: 0.75rem;
+      font-weight: 600;
+    }
+
+    .badge-green {
+      background: #D1FAE5;
+      color: #065F46;
+    }
+
+    .badge-yellow {
+      background: #FEF3C7;
+      color: #92400E;
+    }
+
+    .badge-red {
+      background: #FEE2E2;
+      color: #991B1B;
+    }
+
+    .badge-blue {
+      background: #DBEAFE;
+      color: #1E40AF;
+    }
+
+    .badge-gray {
+      background: #F3F4F6;
+      color: #374151;
+    }
+
+    /* Event Card */
+    .event-card {
+      background: white;
+      border: 1px solid #E5E7EB;
+      border-radius: 0.75rem;
+      padding: 1.25rem;
+      transition: all 0.2s;
+      cursor: pointer;
+    }
+
+    .event-card:hover {
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      transform: translateY(-2px);
+    }
+
+    .event-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: start;
+      margin-bottom: 0.75rem;
+    }
+
+    .event-title {
+      font-size: 1.125rem;
+      color: #111827;
+      font-weight: 600;
+    }
+
+    .event-meta {
+      display: flex;
+      gap: 0.5rem;
+      margin-bottom: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .event-description {
+      color: #6B7280;
+      font-size: 0.9rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .event-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    /* Stats */
+    .stat-card {
+      background: white;
+      border: 1px solid #E5E7EB;
+      border-radius: 0.75rem;
+      padding: 1.25rem;
+    }
+
+    .stat-value {
+      font-size: 2rem;
+      font-weight: 700;
+      color: #002664;
+    }
+
+    .stat-label {
+      color: #6B7280;
+      font-size: 0.875rem;
+      margin-top: 0.25rem;
+    }
+
+    /* Modal */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0,0,0,0.5);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+    }
+
+    .modal {
+      background: white;
+      border-radius: 1rem;
+      padding: 2rem;
+      width: 90%;
+      max-width: 600px;
+      max-height: 90vh;
+      overflow-y: auto;
+    }
+
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.5rem;
+    }
+
+    .modal-title {
+      font-size: 1.5rem;
+      color: #111827;
+    }
+
+    .close-btn {
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      color: #6B7280;
+      cursor: pointer;
+    }
+
+    .close-btn:hover {
+      color: #111827;
+    }
+
+    /* Quick Demo Login */
+    .demo-panel {
+      background: #F8FAFC;
+      border: 1px solid #E5E7EB;
+      border-radius: 0.75rem;
+      padding: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    .demo-panel h3 {
+      font-size: 0.9rem;
+      color: #6B7280;
+      margin-bottom: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .demo-buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    /* Table */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    th, td {
+      padding: 0.75rem;
+      text-align: left;
+      border-bottom: 1px solid #E5E7EB;
+    }
+
+    th {
+      background: #F8FAFC;
+      font-weight: 600;
+      color: #111827;
+      font-size: 0.875rem;
+    }
+
+    /* Filters */
+    .filters {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .filters select,
+    .filters input {
+      padding: 0.5rem 0.75rem;
+      border: 1px solid #E5E7EB;
+      border-radius: 0.5rem;
+      font-size: 0.9rem;
+    }
+
+    .checkbox-label {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.9rem;
+      cursor: pointer;
+    }
+
+    /* Empty State */
+    .empty-state {
+      text-align: center;
+      padding: 3rem 1rem;
+      color: #6B7280;
+    }
+
+    .empty-state-icon {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      opacity: 0.5;
+    }
+
+    /* Document Viewer */
+    .doc-viewer {
+      background: #F8FAFC;
+      border: 1px solid #E5E7EB;
+      border-radius: 0.5rem;
+      padding: 2rem;
+      min-height: 600px;
+      font-family: Georgia, serif;
+      line-height: 1.8;
+    }
+
+    .doc-viewer h2 {
+      margin-bottom: 1.5rem;
+      color: #002664;
+    }
+
+    .doc-viewer h3 {
+      margin-top: 1.5rem;
+      margin-bottom: 0.75rem;
+      color: #111827;
+    }
+
+    .doc-viewer p {
+      margin-bottom: 1rem;
+    }
+
+    .version-history {
+      margin-top: 1rem;
+    }
+
+    .version-item {
+      padding: 0.75rem;
+      background: #F8FAFC;
+      border: 1px solid #E5E7EB;
+      border-radius: 0.5rem;
+      margin-bottom: 0.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .version-item.active {
+      background: #DBEAFE;
+      border-color: #002664;
+    }
+
+    /* Chart */
+    .chart {
+      display: flex;
+      align-items: flex-end;
+      gap: 0.5rem;
+      height: 150px;
+      padding: 1rem 0;
+    }
+
+    .chart-bar {
+      flex: 1;
+      background: #002664;
+      border-radius: 0.25rem 0.25rem 0 0;
+      position: relative;
+      min-height: 4px;
+    }
+
+    .chart-label {
+      font-size: 0.75rem;
+      text-align: center;
+      margin-top: 0.5rem;
+      color: #6B7280;
+    }
+
+    .user-avatar {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: #002664;
+      color: white;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 600;
+      font-size: 0.875rem;
+    }
+
+    .attendee-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-top: 1rem;
+    }
+
+    .attendee-item {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem 0.75rem;
+      background: #F8FAFC;
+      border: 1px solid #E5E7EB;
+      border-radius: 0.5rem;
+      font-size: 0.875rem;
+    }
+
+    .divider {
+      border: none;
+      border-top: 1px solid #E5E7EB;
+      margin: 1.5rem 0;
+    }
+
+    .announcement-card {
+      background: white;
+      border: 1px solid #E5E7EB;
+      border-radius: 0.75rem;
+      padding: 1.25rem;
+      margin-bottom: 1rem;
+    }
+
+    .announcement-card.urgent {
+      border-left: 4px solid #DC2626;
+      background: #FEF2F2;
+    }
+
+    .announcement-card.unread {
+      background: #F0F9FF;
+      border-left: 4px solid #002664;
+    }
+
+    .announcement-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: start;
+      margin-bottom: 0.75rem;
+    }
+
+    .announcement-title {
+      font-size: 1.125rem;
+      color: #111827;
+      font-weight: 600;
+    }
+
+    .announcement-meta {
+      font-size: 0.85rem;
+      color: #6B7280;
+      margin-bottom: 0.5rem;
+    }
+
+    .announcement-body {
+      color: #374151;
+      line-height: 1.6;
+    }
+
+    .read-rate {
+      margin-top: 0.75rem;
+      padding-top: 0.75rem;
+      border-top: 1px solid #E5E7EB;
+      font-size: 0.85rem;
+      color: #6B7280;
+    }
+
+    .profile-section {
+      background: white;
+      border: 1px solid #E5E7EB;
+      border-radius: 0.75rem;
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .profile-header {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .profile-avatar {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background: #002664;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      font-weight: 700;
+    }
+
+    .profile-info h2 {
+      margin-bottom: 0.25rem;
+    }
+
+    .profile-role {
+      color: #6B7280;
+      font-size: 0.9rem;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    .settings-icon {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      width: 40px;
+      height: 40px;
+      background: #F3F4F6;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      opacity: 0.3;
+      transition: opacity 0.2s;
+    }
+
+    .settings-icon:hover {
+      opacity: 0.6;
+    }
+
+    @media (max-width: 1024px) {
+      .grid-3 {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .sidebar {
+        width: 70px;
+      }
+      .sidebar-logo,
+      .sidebar-nav span {
+        display: none;
+      }
+      .main-content {
+        margin-left: 70px;
+      }
+      .grid-2,
+      .grid-3 {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div id="app"></div>
+
+  <script>
+    // ===== STATE & STORAGE =====
+    const state = {
+      bootstrapped: false,
+      user: null
+    };
+
+    const STORAGE_KEYS = {
+      USERS: 'dormops_users',
+      SESSION: 'dormops_session',
+      EVENTS: 'dormops_events',
+      ANNOUNCEMENTS: 'dormops_announcements',
+      DOCUMENTS: 'dormops_documents'
+    };
+
+    function initStorage() {
+      if (!localStorage.getItem(STORAGE_KEYS.USERS)) {
+        const seedUsers = [
+          {
+            id: 'u1',
+            email: 'student1@villanovaprep.org',
+            password: 'demo123',
+            full_name: 'Ethan Rivera',
+            dorm: 'Cantwell',
+            grade: 11,
+            role: 'student'
+          },
+          {
+            id: 'u2',
+            email: 'student2@villanovaprep.org',
+            password: 'demo123',
+            full_name: 'Noah Kim',
+            dorm: 'Cantwell',
+            grade: 11,
+            role: 'student'
+          },
+          {
+            id: 'u3',
+            email: 'student3@villanovaprep.org',
+            password: 'demo123',
+            full_name: 'Sofia Martinez',
+            dorm: 'Glynn',
+            grade: 10,
+            role: 'student'
+          },
+          {
+            id: 'u4',
+            email: 'staff@villanovaprep.org',
+            password: 'demo123',
+            full_name: 'Mr. Callahan',
+            role: 'staff'
+          },
+          {
+            id: 'u5',
+            email: 'admin@villanovaprep.org',
+            password: 'demo123',
+            full_name: 'Ms. Donnelly',
+            role: 'admin'
+          }
+        ];
+        localStorage.setItem(STORAGE_KEYS.USERS, JSON.stringify(seedUsers));
+      }
+
+      if (!localStorage.getItem(STORAGE_KEYS.EVENTS)) {
+        const seedEvents = [
+          {
+            id: 'e1',
+            title: 'Study Hall 7–9 PM',
+            type: 'Mandatory',
+            dorm: 'Both',
+            date: '2026-02-15',
+            time: '7:00 PM',
+            location: 'Library',
+            description: 'Mandatory study time for all students',
+            capacity: null,
+            confirmed: [],
+            waitlist: []
+          },
+          {
+            id: 'e2',
+            title: 'Basketball Practice',
+            type: 'Athletics',
+            dorm: 'Cantwell',
+            date: '2026-02-16',
+            time: '4:00 PM',
+            location: 'Gymnasium',
+            description: 'Weekly basketball practice session',
+            capacity: null,
+            confirmed: [],
+            waitlist: []
+          },
+          {
+            id: 'e3',
+            title: 'Weekend Malibu Trip',
+            type: 'Weekend Trip',
+            dorm: 'Both',
+            date: '2026-02-21',
+            time: '9:00 AM',
+            location: 'Malibu Beach',
+            description: 'Beach day trip with lunch included',
+            capacity: 18,
+            leader: 'Mr. Callahan',
+            driver: 'Ms. Rodriguez',
+            confirmed: ['u1', 'u2', 'u3', 'u6', 'u7', 'u8', 'u9', 'u10', 'u11', 'u12', 'u13', 'u14', 'u15', 'u16'],
+            waitlist: ['u17', 'u18']
+          },
+          {
+            id: 'e4',
+            title: 'Community Service Food Bank',
+            type: 'Service',
+            dorm: 'Both',
+            date: '2026-02-18',
+            time: '2:00 PM',
+            location: 'Local Food Bank',
+            description: 'Volunteer at the community food bank',
+            capacity: 25,
+            confirmed: ['u1', 'u3'],
+            waitlist: []
+          },
+          {
+            id: 'e5',
+            title: 'Movie Night Cantwell',
+            type: 'Social',
+            dorm: 'Cantwell',
+            date: '2026-02-17',
+            time: '8:00 PM',
+            location: 'Cantwell Common Room',
+            description: 'Movie night with popcorn and snacks',
+            capacity: 30,
+            confirmed: ['u1', 'u2'],
+            waitlist: []
+          },
+          {
+            id: 'e6',
+            title: 'Mandatory Dorm Meeting Tonight',
+            type: 'Mandatory',
+            dorm: 'Cantwell',
+            date: '2026-02-14',
+            time: '9:15 PM',
+            location: 'Cantwell Common Room',
+            description: 'Important announcements about upcoming schedule changes',
+            capacity: null,
+            confirmed: [],
+            waitlist: []
+          },
+          {
+            id: 'e7',
+            title: 'Glynn Hall Wellness Yoga',
+            type: 'Wellness',
+            dorm: 'Glynn',
+            date: '2026-02-16',
+            time: '5:30 PM',
+            location: 'Glynn Multipurpose Room',
+            description: 'Relaxing yoga session for stress relief',
+            capacity: 20,
+            confirmed: ['u3'],
+            waitlist: []
+          },
+          {
+            id: 'e8',
+            title: 'Santa Barbara Hike',
+            type: 'Weekend Trip',
+            dorm: 'Both',
+            date: '2026-02-22',
+            time: '8:00 AM',
+            location: 'Santa Barbara Trails',
+            description: 'Guided hiking trip with packed lunch',
+            capacity: 12,
+            confirmed: ['u2', 'u3'],
+            waitlist: []
+          }
+        ];
+        localStorage.setItem(STORAGE_KEYS.EVENTS, JSON.stringify(seedEvents));
+      }
+
+      if (!localStorage.getItem(STORAGE_KEYS.ANNOUNCEMENTS)) {
+        const seedAnnouncements = [
+          {
+            id: 'a1',
+            title: 'Mandatory Meeting Tonight',
+            body: 'All Cantwell residents must attend the dorm meeting at 9:15 PM tonight in the common room. We will discuss important schedule changes for next week.',
+            author: 'Mr. Callahan',
+            date: '2026-02-14T20:00:00',
+            urgent: true,
+            readBy: []
+          },
+          {
+            id: 'a2',
+            title: 'Weekend Menu Update',
+            body: 'This weekend we will be featuring a special brunch menu on Sunday from 10 AM to 1 PM. Check the Documents section for details.',
+            author: 'Ms. Donnelly',
+            date: '2026-02-14T15:00:00',
+            urgent: false,
+            readBy: ['u1', 'u2']
+          },
+          {
+            id: 'a3',
+            title: 'Basketball Game Saturday',
+            body: 'Come support our team this Saturday at 3 PM! There will be free refreshments for all attendees.',
+            author: 'Coach Martinez',
+            date: '2026-02-13T10:00:00',
+            urgent: false,
+            readBy: ['u1', 'u2', 'u3']
+          },
+          {
+            id: 'a4',
+            title: 'Study Hall Policy Reminder',
+            body: 'Reminder that all students must attend evening study hall from 7-9 PM on weekdays. No exceptions without prior approval.',
+            author: 'Ms. Donnelly',
+            date: '2026-02-12T14:00:00',
+            urgent: false,
+            readBy: ['u1', 'u3']
+          },
+          {
+            id: 'a5',
+            title: 'Malibu Trip Sign-Up Closing Soon',
+            body: 'Sign-ups for the Malibu beach trip close on Monday. We only have a few spots left, so register soon!',
+            author: 'Mr. Callahan',
+            date: '2026-02-11T16:00:00',
+            urgent: false,
+            readBy: ['u1', 'u2', 'u3']
+          }
+        ];
+        localStorage.setItem(STORAGE_KEYS.ANNOUNCEMENTS, JSON.stringify(seedAnnouncements));
+      }
+
+      if (!localStorage.getItem(STORAGE_KEYS.DOCUMENTS)) {
+        const seedDocs = {
+          schedule: {
+            versions: [
+              {
+                id: 'sch1',
+                filename: 'Weekly_Schedule_Feb14.pdf',
+                uploadedBy: 'Ms. Donnelly',
+                uploadedAt: '2026-02-14T09:00:00',
+                active: true,
+                content: {
+                  title: 'Weekly Schedule - February 14-20, 2026',
+                  sections: [
+                    { day: 'Monday', activities: ['7:00 AM - Breakfast', '8:00 AM - Classes Begin', '3:30 PM - Athletics/Activities', '6:00 PM - Dinner', '7:00 PM - Study Hall', '10:00 PM - Lights Out'] },
+                    { day: 'Tuesday', activities: ['7:00 AM - Breakfast', '8:00 AM - Classes Begin', '3:30 PM - Athletics/Activities', '6:00 PM - Dinner', '7:00 PM - Study Hall', '10:00 PM - Lights Out'] },
+                    { day: 'Wednesday', activities: ['7:00 AM - Breakfast', '8:00 AM - Classes Begin', '1:00 PM - Early Dismissal', '2:00 PM - Community Service', '6:00 PM - Dinner', '7:00 PM - Study Hall', '10:00 PM - Lights Out'] },
+                    { day: 'Thursday', activities: ['7:00 AM - Breakfast', '8:00 AM - Classes Begin', '3:30 PM - Athletics/Activities', '6:00 PM - Dinner', '7:00 PM - Study Hall', '10:00 PM - Lights Out'] },
+                    { day: 'Friday', activities: ['7:00 AM - Breakfast', '8:00 AM - Classes Begin', '3:30 PM - Weekend Prep', '6:00 PM - Dinner', '8:00 PM - Movie Night', '11:00 PM - Lights Out'] }
+                  ]
+                }
+              },
+              {
+                id: 'sch2',
+                filename: 'Weekly_Schedule_Feb7.pdf',
+                uploadedBy: 'Ms. Donnelly',
+                uploadedAt: '2026-02-07T09:00:00',
+                active: false,
+                content: {
+                  title: 'Weekly Schedule - February 7-13, 2026',
+                  sections: [
+                    { day: 'Monday', activities: ['7:00 AM - Breakfast', '8:00 AM - Classes Begin', '3:30 PM - Athletics/Activities', '6:00 PM - Dinner', '7:00 PM - Study Hall', '10:00 PM - Lights Out'] }
+                  ]
+                }
+              }
+            ]
+          },
+          menu: {
+            versions: [
+              {
+                id: 'men1',
+                filename: 'Dining_Menu_Week7.pdf',
+                uploadedBy: 'Chef Anderson',
+                uploadedAt: '2026-02-14T08:00:00',
+                active: true,
+                content: {
+                  title: 'Weekly Dining Menu',
+                  sections: [
+                    { title: 'Lunch', items: ['Monday: Grilled Chicken Sandwiches, Caesar Salad, Fruit', 'Tuesday: Pasta Primavera, Garlic Bread, Garden Salad', 'Wednesday: Tacos, Rice & Beans, Chips & Salsa', 'Thursday: Pizza Day, Mixed Greens, Fresh Fruit', 'Friday: Fish & Chips, Coleslaw, Cookies'] },
+                    { title: 'Dinner', items: ['Monday: Beef Stir-Fry, Steamed Rice, Vegetables', 'Tuesday: BBQ Chicken, Mashed Potatoes, Green Beans', 'Wednesday: Spaghetti & Meatballs, Caesar Salad, Breadsticks', 'Thursday: Teriyaki Salmon, Quinoa, Roasted Vegetables', 'Friday: Burger Night, Sweet Potato Fries, Ice Cream'] },
+                    { title: 'Weekend Brunch', items: ['Saturday & Sunday: Pancakes, Scrambled Eggs, Bacon, Sausage, Fresh Fruit, Yogurt Bar, Made-to-Order Omelets'] }
+                  ]
+                }
+              },
+              {
+                id: 'men2',
+                filename: 'Dining_Menu_Week6.pdf',
+                uploadedBy: 'Chef Anderson',
+                uploadedAt: '2026-02-07T08:00:00',
+                active: false,
+                content: {
+                  title: 'Weekly Dining Menu - Week 6',
+                  sections: [
+                    { title: 'Lunch', items: ['Various items from previous week'] }
+                  ]
+                }
+              }
+            ]
+          }
+        };
+        localStorage.setItem(STORAGE_KEYS.DOCUMENTS, JSON.stringify(seedDocs));
+      }
+    }
+
+    function loadSession() {
+      const sessionData = localStorage.getItem(STORAGE_KEYS.SESSION);
+      if (sessionData) {
+        const session = JSON.parse(sessionData);
+        const users = JSON.parse(localStorage.getItem(STORAGE_KEYS.USERS));
+        const user = users.find(u => u.id === session.userId);
+        if (user) {
+          state.user = user;
+        }
+      }
+      state.bootstrapped = true;
+    }
+
+    function createSession(userId) {
+      const session = { userId, createdAt: Date.now() };
+      localStorage.setItem(STORAGE_KEYS.SESSION, JSON.stringify(session));
+      const users = JSON.parse(localStorage.getItem(STORAGE_KEYS.USERS));
+      state.user = users.find(u => u.id === userId);
+    }
+
+    function clearSession() {
+      localStorage.removeItem(STORAGE_KEYS.SESSION);
+      state.user = null;
+    }
+
+    function updateUser(updates) {
+      const users = JSON.parse(localStorage.getItem(STORAGE_KEYS.USERS));
+      const index = users.findIndex(u => u.id === state.user.id);
+      if (index !== -1) {
+        users[index] = { ...users[index], ...updates };
+        localStorage.setItem(STORAGE_KEYS.USERS, JSON.stringify(users));
+        state.user = users[index];
+      }
+    }
+
+    // ===== TOAST =====
+    function showToast(message, type = 'success') {
+      const toast = document.createElement('div');
+      toast.className = `toast ${type === 'error' ? 'error' : ''}`;
+      toast.innerHTML = `
+        <span>${type === 'error' ? '✕' : '✓'}</span>
+        <span>${message}</span>
+      `;
+      document.body.appendChild(toast);
+      setTimeout(() => toast.remove(), 3000);
+    }
+
+    // ===== HTML ESCAPE =====
+    function escapeHtml(unsafe) {
+      if (!unsafe) return '';
+      return String(unsafe)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+    }
+
+    // ===== ROUTER =====
+    let currentRoute = '';
+
+    window.navigate = function(path) {
+      window.location.hash = path;
+    }
+
+    function getRoute() {
+      return window.location.hash.slice(1) || '/';
+    }
+
+    function getParams(pattern, path) {
+      const patternParts = pattern.split('/');
+      const pathParts = path.split('/');
+      const params = {};
+      
+      for (let i = 0; i < patternParts.length; i++) {
+        if (patternParts[i].startsWith(':')) {
+          params[patternParts[i].slice(1)] = pathParts[i];
+        }
+      }
+      
+      return params;
+    }
+
+    function matchRoute(pattern, path) {
+      const patternParts = pattern.split('/');
+      const pathParts = path.split('/');
+      
+      if (patternParts.length !== pathParts.length) return false;
+      
+      return patternParts.every((part, i) => {
+        return part.startsWith(':') || part === pathParts[i];
+      });
+    }
+
+    const routes = {
+      '/': renderLanding,
+      '/login': renderLogin,
+      '/signup': renderSignup,
+      '/home': renderHome,
+      '/events': renderEvents,
+      '/events/:id': renderEventDetail,
+      '/my': renderMy,
+      '/announcements': renderAnnouncements,
+      '/documents': renderDocuments,
+      '/documents/schedule': renderSchedule,
+      '/documents/menu': renderMenu,
+      '/profile': renderProfile,
+      '/admin': renderAdmin
+    };
+
+    const protectedRoutes = ['/home', '/events', '/events/:id', '/my', '/announcements', '/documents', '/documents/schedule', '/documents/menu', '/profile', '/admin'];
+    const publicRoutes = ['/', '/login', '/signup'];
+
+    function handleRoute() {
+      if (!state.bootstrapped) return;
+
+      const path = getRoute();
+      const queryIndex = path.indexOf('?');
+      const cleanPath = queryIndex > -1 ? path.substring(0, queryIndex) : path;
+
+      // Redirect authenticated users away from login/signup
+      if (state.user && (cleanPath === '/login' || cleanPath === '/signup')) {
+        navigate('/home');
+        return;
+      }
+
+      // Check if route is protected
+      const isProtected = protectedRoutes.some(r => {
+        if (r.includes(':')) {
+          return matchRoute(r, cleanPath);
+        }
+        return r === cleanPath;
+      });
+
+      if (isProtected && !state.user) {
+        const next = encodeURIComponent(cleanPath);
+        navigate(`/login?next=${next}`);
+        return;
+      }
+
+      // Admin check
+      if (cleanPath === '/admin' && state.user && state.user.role === 'student') {
+        showToast('Access denied', 'error');
+        navigate('/home');
+        return;
+      }
+
+      // Find and render route
+      let rendered = false;
+      for (const [pattern, handler] of Object.entries(routes)) {
+        if (pattern.includes(':')) {
+          if (matchRoute(pattern, cleanPath)) {
+            const params = getParams(pattern, cleanPath);
+            handler(params);
+            rendered = true;
+            break;
+          }
+        } else if (pattern === cleanPath) {
+          handler();
+          rendered = true;
+          break;
+        }
+      }
+
+      if (!rendered) {
+        navigate('/home');
+      }
+
+      currentRoute = cleanPath;
+    }
+
+    window.addEventListener('hashchange', handleRoute);
+
+    // ===== COMPONENTS =====
+    function renderApp(content, showNav = true) {
+      const app = document.getElementById('app');
+      
+      if (!showNav) {
+        app.innerHTML = content;
+        return;
+      }
+
+      const isAdmin = state.user && (state.user.role === 'staff' || state.user.role === 'admin');
+
+      app.innerHTML = `
+        <div class="app-container">
+          <aside class="sidebar">
+            <div class="sidebar-logo">Dorm Ops</div>
+            <nav class="sidebar-nav">
+              <a class="${currentRoute === '/home' ? 'active' : ''}" onclick="navigate('/home'); return false;" style="cursor: pointer;">
+                <span class="icon">🏠</span>
+                <span>Home</span>
+              </a>
+              <a class="${currentRoute.startsWith('/events') ? 'active' : ''}" onclick="navigate('/events'); return false;" style="cursor: pointer;">
+                <span class="icon">📅</span>
+                <span>Events</span>
+              </a>
+              <a class="${currentRoute === '/my' ? 'active' : ''}" onclick="navigate('/my'); return false;" style="cursor: pointer;">
+                <span class="icon">⭐</span>
+                <span>My</span>
+              </a>
+              <a class="${currentRoute === '/announcements' ? 'active' : ''}" onclick="navigate('/announcements'); return false;" style="cursor: pointer;">
+                <span class="icon">📢</span>
+                <span>Announcements</span>
+              </a>
+              <a class="${currentRoute.startsWith('/documents') ? 'active' : ''}" onclick="navigate('/documents'); return false;" style="cursor: pointer;">
+                <span class="icon">📄</span>
+                <span>Documents</span>
+              </a>
+              <a class="${currentRoute === '/profile' ? 'active' : ''}" onclick="navigate('/profile'); return false;" style="cursor: pointer;">
+                <span class="icon">👤</span>
+                <span>Profile</span>
+              </a>
+              ${isAdmin ? `
+                <a class="${currentRoute === '/admin' ? 'active' : ''}" onclick="navigate('/admin'); return false;" style="cursor: pointer;">
+                  <span class="icon">⚙️</span>
+                  <span>Admin</span>
+                </a>
+              ` : ''}
+            </nav>
+          </aside>
+          <main class="main-content">
+            ${content}
+          </main>
+        </div>
+      `;
+    }
+
+    // ===== PUBLIC PAGES =====
+    function renderLanding() {
+      const content = `
+        <div class="public-container">
+          <div class="public-card">
+            <div class="public-logo">
+              <h1>Dorm Ops</h1>
+              <p>Villanova Preparatory School</p>
+            </div>
+            <h2 class="text-center mb-2">Residential Life Management</h2>
+            <p class="text-center mb-2" style="color: #6B7280;">
+              Your central hub for dorm events, announcements, and community.
+            </p>
+            <button class="btn btn-primary" style="width: 100%; margin-bottom: 1rem;" onclick="navigate('/login')">Sign In</button>
+            <button class="btn btn-secondary" style="width: 100%;" onclick="navigate('/signup')">Create Account</button>
+          </div>
+        </div>
+      `;
+      renderApp(content, false);
+    }
+
+    function renderLogin() {
+      const params = new URLSearchParams(window.location.hash.split('?')[1]);
+      const next = params.get('next') || '/home';
+
+      const content = `
+        <div class="public-container">
+          <div class="public-card">
+            <div class="public-logo">
+              <h1>Dorm Ops</h1>
+              <p>Villanova Preparatory School</p>
+            </div>
+            <h2 class="text-center mb-2">Sign In</h2>
+            <form id="loginForm">
+              <div class="form-group">
+                <label>Email</label>
+                <input type="email" id="loginEmail" required autocomplete="email">
+              </div>
+              <div class="form-group">
+                <label>Password</label>
+                <input type="password" id="loginPassword" required autocomplete="current-password">
+              </div>
+              <div id="loginError"></div>
+              <button type="button" class="btn btn-primary" style="width: 100%; margin-top: 1rem;" onclick="
+                const email = document.getElementById('loginEmail').value.toLowerCase().trim();
+                const password = document.getElementById('loginPassword').value;
+                const users = JSON.parse(localStorage.getItem('dormops_users'));
+                const user = users.find(u => u.email.toLowerCase() === email && u.password === password);
+                if (user) {
+                  const session = { userId: user.id, createdAt: Date.now() };
+                  localStorage.setItem('dormops_session', JSON.stringify(session));
+                  window.location.hash = '${next}';
+                  window.location.reload();
+                } else {
+                  document.getElementById('loginError').innerHTML = '<p class=&quot;error-message&quot;>Invalid email or password</p>';
+                }
+              ">Sign In</button>
+            </form>
+            <p class="text-center mt-1">
+              Don't have an account? <a href="#/signup" class="link">Sign up</a>
+            </p>
+            <div class="demo-panel">
+              <h3>Quick Demo Login</h3>
+              <div class="demo-buttons">
+                <button class="btn btn-secondary" onclick="
+                  const users = JSON.parse(localStorage.getItem('dormops_users'));
+                  const user = users.find(u => u.email === 'student1@villanovaprep.org');
+                  if (user) {
+                    const session = { userId: user.id, createdAt: Date.now() };
+                    localStorage.setItem('dormops_session', JSON.stringify(session));
+                    window.location.hash = '${next}';
+                    window.location.reload();
+                  }
+                ">Login as Student (Cantwell)</button>
+                <button class="btn btn-secondary" onclick="
+                  const users = JSON.parse(localStorage.getItem('dormops_users'));
+                  const user = users.find(u => u.email === 'staff@villanovaprep.org');
+                  if (user) {
+                    const session = { userId: user.id, createdAt: Date.now() };
+                    localStorage.setItem('dormops_session', JSON.stringify(session));
+                    window.location.hash = '${next}';
+                    window.location.reload();
+                  }
+                ">Login as Staff</button>
+                <button class="btn btn-secondary" onclick="
+                  const users = JSON.parse(localStorage.getItem('dormops_users'));
+                  const user = users.find(u => u.email === 'admin@villanovaprep.org');
+                  if (user) {
+                    const session = { userId: user.id, createdAt: Date.now() };
+                    localStorage.setItem('dormops_session', JSON.stringify(session));
+                    window.location.hash = '${next}';
+                    window.location.reload();
+                  }
+                ">Login as Admin</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      `;
+      renderApp(content, false);
+    }
+
+    window.handleLogin = function(e, next) {
+      e.preventDefault();
+      const form = e.target;
+      const email = form.email.value.toLowerCase().trim();
+      const password = form.password.value;
+      
+      const users = JSON.parse(localStorage.getItem(STORAGE_KEYS.USERS));
+      const user = users.find(u => u.email.toLowerCase() === email && u.password === password);
+      
+      if (user) {
+        createSession(user.id);
+        navigate(decodeURIComponent(next));
+        handleRoute();
+      } else {
+        document.getElementById('loginError').innerHTML = '<p class="error-message">Invalid email or password</p>';
+      }
+    }
+
+    window.quickLogin = function(email, next) {
+      const users = JSON.parse(localStorage.getItem(STORAGE_KEYS.USERS));
+      const user = users.find(u => u.email === email);
+      if (user) {
+        createSession(user.id);
+        navigate(decodeURIComponent(next));
+        handleRoute();
+      }
+    }
+
+    function renderSignup() {
+      const content = `
+        <div class="public-container">
+          <div class="public-card">
+            <div class="public-logo">
+              <h1>Dorm Ops</h1>
+              <p>Villanova Preparatory School</p>
+            </div>
+            <h2 class="text-center mb-2">Create Account</h2>
+            <form id="signupForm" onsubmit="event.preventDefault(); handleSignup(event);">
+              <div class="form-group">
+                <label>Full Name</label>
+                <input type="text" name="full_name" required>
+              </div>
+              <div class="form-group">
+                <label>Email</label>
+                <input type="email" name="email" required autocomplete="email">
+              </div>
+              <div class="form-group">
+                <label>Password</label>
+                <input type="password" name="password" required minlength="6" autocomplete="new-password">
+              </div>
+              <div class="form-group">
+                <label>Dorm</label>
+                <select name="dorm" required>
+                  <option value="">Select dorm</option>
+                  <option value="Cantwell">Cantwell</option>
+                  <option value="Glynn">Glynn</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>Grade</label>
+                <select name="grade" required>
+                  <option value="">Select grade</option>
+                  <option value="9">9</option>
+                  <option value="10">10</option>
+                  <option value="11">11</option>
+                  <option value="12">12</option>
+                </select>
+              </div>
+              <div id="signupError"></div>
+              <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 1rem;">Create Account</button>
+            </form>
+            <p class="text-center mt-1">
+              Already have an account? <a href="#/login" class="link">Sign in</a>
+            </p>
+          </div>
+        </div>
+      `;
+      renderApp(content, false);
+    }
+
+    window.handleSignup = function(e) {
+      e.preventDefault();
+      const form = e.target;
+      const email = form.email.value.toLowerCase().trim();
+      
+      if (!email.endsWith('@villanovaprep.org')) {
+        document.getElementById('signupError').innerHTML = '<p class="error-message">Must use a @villanovaprep.org email</p>';
+        return;
+      }
+      
+      const users = JSON.parse(localStorage.getItem(STORAGE_KEYS.USERS));
+      
+      if (users.find(u => u.email.toLowerCase() === email)) {
+        document.getElementById('signupError').innerHTML = '<p class="error-message">Email already registered</p>';
+        return;
+      }
+      
+      const newUser = {
+        id: 'u' + Date.now(),
+        email: email,
+        password: form.password.value,
+        full_name: form.full_name.value,
+        dorm: form.dorm.value,
+        grade: parseInt(form.grade.value),
+        role: 'student'
+      };
+      
+      users.push(newUser);
+      localStorage.setItem(STORAGE_KEYS.USERS, JSON.stringify(users));
+      
+      createSession(newUser.id);
+      navigate('/home');
+      handleRoute();
+    }
+
+    // ===== HOME =====
+    function renderHome() {
+      const events = JSON.parse(localStorage.getItem(STORAGE_KEYS.EVENTS));
+      const announcements = JSON.parse(localStorage.getItem(STORAGE_KEYS.ANNOUNCEMENTS));
+      
+      const relevantEvents = events
+        .filter(e => {
+          if (state.user.role !== 'student') return true;
+          return e.dorm === 'Both' || e.dorm === state.user.dorm;
+        })
+        .sort((a, b) => new Date(a.date) - new Date(b.date))
+        .slice(0, 2);
+
+      const unreadAnnouncements = announcements
+        .filter(a => !a.readBy.includes(state.user.id))
+        .sort((a, b) => new Date(b.date) - new Date(a.date))
+        .slice(0, 3);
+
+      const malibuTrip = events.find(e => e.id === 'e3');
+      const capacityUsed = malibuTrip ? (malibuTrip.confirmed.length / malibuTrip.capacity * 100).toFixed(0) : 0;
+
+      const isStaff = state.user.role === 'staff' || state.user.role === 'admin';
+
+      let staffModules = '';
+      if (isStaff) {
+        const capacityAlerts = events.filter(e => e.capacity && (e.capacity - e.confirmed.length) / e.capacity < 0.1);
+        const signupsToday = events.reduce((sum, e) => sum + e.confirmed.length, 0);
+        const totalReads = announcements.reduce((sum, a) => sum + a.readBy.length, 0);
+        const avgReadRate = announcements.length > 0 ? (totalReads / announcements.length).toFixed(1) : 0;
+
+        staffModules = `
+          <div class="card">
+            <h3 class="card-title">Staff Dashboard</h3>
+            <div class="grid grid-3">
+              <div class="stat-card">
+                <div class="stat-value">${capacityAlerts.length}</div>
+                <div class="stat-label">Capacity Alerts</div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-value">${signupsToday}</div>
+                <div class="stat-label">Total Signups</div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-value">${avgReadRate}</div>
+                <div class="stat-label">Avg Announcement Reads</div>
+              </div>
+            </div>
+            <div class="mt-1">
+              <button class="btn btn-primary btn-small" onclick="navigate('/admin')">Create Event</button>
+              <button class="btn btn-primary btn-small" onclick="navigate('/admin')">Post Announcement</button>
+            </div>
+          </div>
+        `;
+      }
+
+      const content = `
+        <div class="header">
+          <div class="header-top">
+            <h1>Welcome, ${state.user.full_name}</h1>
+          </div>
+        </div>
+        <div class="content">
+          <div class="grid grid-2">
+            <div>
+              <div class="card">
+                <h3 class="card-title">Upcoming Events</h3>
+                ${relevantEvents.map(e => `
+                  <div class="event-card" onclick="navigate('/events/${e.id}')">
+                    <div class="event-header">
+                      <div class="event-title">${escapeHtml(e.title)}</div>
+                      ${getCapacityBadge(e)}
+                    </div>
+                    <div class="event-meta">
+                      <span class="badge badge-gray">${escapeHtml(e.type)}</span>
+                      <span class="badge badge-blue">${escapeHtml(e.dorm)}</span>
+                    </div>
+                    <div class="event-description">${e.date} at ${e.time}</div>
+                  </div>
+                `).join('')}
+                <button class="btn btn-secondary btn-small mt-1" onclick="navigate('/events')">View All Events</button>
+              </div>
+
+              ${malibuTrip ? `
+                <div class="card">
+                  <h3 class="card-title">Weekend Trip Spotlight</h3>
+                  <div class="event-title">${escapeHtml(malibuTrip.title)}</div>
+                  <div class="event-meta mt-1">
+                    <span class="badge badge-blue">${malibuTrip.date}</span>
+                    <span class="badge ${capacityUsed >= 90 ? 'badge-red' : capacityUsed >= 75 ? 'badge-yellow' : 'badge-green'}">${malibuTrip.confirmed.length}/${malibuTrip.capacity} spots</span>
+                  </div>
+                  <p style="margin-top: 1rem; color: #6B7280;">Leader: ${malibuTrip.leader} | Driver: ${malibuTrip.driver}</p>
+                  <button class="btn btn-primary btn-small mt-1" onclick="navigate('/events/${malibuTrip.id}')">View Details</button>
+                </div>
+              ` : ''}
+            </div>
+
+            <div>
+              <div class="card">
+                <h3 class="card-title">Unread Announcements</h3>
+                ${unreadAnnouncements.length === 0 ? '<p class="text-center" style="color: #6B7280;">All caught up!</p>' : ''}
+                ${unreadAnnouncements.map(a => `
+                  <div class="announcement-card ${a.urgent ? 'urgent' : 'unread'}">
+                    <div class="announcement-header">
+                      <div class="announcement-title">${escapeHtml(a.title)}</div>
+                      ${a.urgent ? '<span class="badge badge-red">Urgent</span>' : ''}
+                    </div>
+                    <div class="announcement-body">${escapeHtml(a.body.substring(0, 100))}...</div>
+                  </div>
+                `).join('')}
+                <button class="btn btn-secondary btn-small mt-1" onclick="navigate('/announcements')">View All</button>
+              </div>
+
+              ${staffModules}
+            </div>
+          </div>
+        </div>
+      `;
+
+      renderApp(content);
+    }
+
+    // ===== EVENTS =====
+    function renderEvents() {
+      const events = JSON.parse(localStorage.getItem(STORAGE_KEYS.EVENTS));
+
+      const content = `
+        <div class="header">
+          <div class="header-top">
+            <h1>Events</h1>
+            <div class="header-actions">
+              <input type="text" class="search-box" placeholder="Search events..." id="eventSearch" oninput="filterEvents()">
+            </div>
+          </div>
+        </div>
+        <div class="content">
+          <div class="filters">
+            <select id="typeFilter" onchange="filterEvents()">
+              <option value="">All Types</option>
+              <option value="Mandatory">Mandatory</option>
+              <option value="Athletics">Athletics</option>
+              <option value="Weekend Trip">Weekend Trip</option>
+              <option value="Service">Service</option>
+              <option value="Social">Social</option>
+              <option value="Wellness">Wellness</option>
+            </select>
+            <select id="dormFilter" onchange="filterEvents()">
+              <option value="">My Dorm + Both</option>
+              <option value="all">All Dorms</option>
+            </select>
+          </div>
+          <div id="eventsList" class="grid grid-2">
+            ${renderEventsList(events)}
+          </div>
+        </div>
+      `;
+
+      renderApp(content);
+    }
+
+    function renderEventsList(events) {
+      let filtered = events;
+      
+      const search = document.getElementById('eventSearch')?.value.toLowerCase() || '';
+      const typeFilter = document.getElementById('typeFilter')?.value || '';
+      const dormFilter = document.getElementById('dormFilter')?.value || '';
+
+      if (search) {
+        filtered = filtered.filter(e => 
+          e.title.toLowerCase().includes(search) || 
+          e.description.toLowerCase().includes(search)
+        );
+      }
+
+      if (typeFilter) {
+        filtered = filtered.filter(e => e.type === typeFilter);
+      }
+
+      if (dormFilter !== 'all') {
+        filtered = filtered.filter(e => {
+          if (state.user.role !== 'student') return true;
+          return e.dorm === 'Both' || e.dorm === state.user.dorm;
+        });
+      }
+
+      if (filtered.length === 0) {
+        return '<div class="empty-state"><div class="empty-state-icon">📅</div><p>No events found</p></div>';
+      }
+
+      return filtered.map(e => `
+        <div class="event-card" onclick="navigate('/events/${e.id}')">
+          <div class="event-header">
+            <div class="event-title">${escapeHtml(e.title)}</div>
+            ${getCapacityBadge(e)}
+          </div>
+          <div class="event-meta">
+            <span class="badge badge-gray">${escapeHtml(e.type)}</span>
+            <span class="badge badge-blue">${escapeHtml(e.dorm)}</span>
+          </div>
+          <div class="event-description">${escapeHtml(e.description)}</div>
+          <div class="event-footer">
+            <span style="color: #6B7280; font-size: 0.875rem;">${e.date} at ${e.time}</span>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    window.filterEvents = function() {
+      const events = JSON.parse(localStorage.getItem(STORAGE_KEYS.EVENTS));
+      document.getElementById('eventsList').innerHTML = renderEventsList(events);
+    }
+
+    function getCapacityBadge(event) {
+      if (!event.capacity) return '<span class="badge badge-blue">Open</span>';
+      
+      const remaining = event.capacity - event.confirmed.length;
+      const percentFull = (event.confirmed.length / event.capacity) * 100;
+      
+      if (remaining === 0) {
+        return '<span class="badge badge-red">Full</span>';
+      } else if (percentFull >= 90) {
+        return `<span class="badge badge-red">${remaining} left</span>`;
+      } else if (percentFull >= 75) {
+        return `<span class="badge badge-yellow">${remaining} left</span>`;
+      } else {
+        return `<span class="badge badge-green">${remaining} spots</span>`;
+      }
+    }
+
+    function renderEventDetail(params) {
+      const events = JSON.parse(localStorage.getItem(STORAGE_KEYS.EVENTS));
+      const users = JSON.parse(localStorage.getItem(STORAGE_KEYS.USERS));
+      const event = events.find(e => e.id === params.id);
+      
+      if (!event) {
+        navigate('/events');
+        return;
+      }
+
+      const isConfirmed = event.confirmed.includes(state.user.id);
+      const isWaitlisted = event.waitlist.includes(state.user.id);
+      const isFull = event.capacity && event.confirmed.length >= event.capacity;
+
+      const confirmedUsers = event.confirmed.map(uid => users.find(u => u.id === uid)).filter(Boolean);
+      const waitlistUsers = event.waitlist.map(uid => users.find(u => u.id === uid)).filter(Boolean);
+
+      const content = `
+        <div class="header">
+          <div class="header-top">
+            <h1>${event.title}</h1>
+            <button class="btn btn-secondary" onclick="navigate('/events')">← Back to Events</button>
+          </div>
+        </div>
+        <div class="content">
+          <div class="card">
+            <div class="event-meta">
+              <span class="badge badge-gray">${escapeHtml(event.type)}</span>
+              <span class="badge badge-blue">${escapeHtml(event.dorm)}</span>
+              ${getCapacityBadge(event)}
+            </div>
+            <h2 class="mt-1">${escapeHtml(event.title)}</h2>
+            <p style="color: #6B7280; margin: 0.5rem 0;">
+              📅 ${event.date} at ${event.time}<br>
+              📍 ${escapeHtml(event.location)}
+            </p>
+            ${event.leader ? `<p style="color: #6B7280;">👤 Leader: ${escapeHtml(event.leader)} | Driver: ${escapeHtml(event.driver)}</p>` : ''}
+            <p class="mt-1">${escapeHtml(event.description)}</p>
+
+            ${event.capacity ? `
+              <div class="mt-2">
+                <strong>Capacity:</strong> ${event.confirmed.length} / ${event.capacity}
+                ${event.waitlist.length > 0 ? `<span style="color: #6B7280;"> (${event.waitlist.length} waitlisted)</span>` : ''}
+              </div>
+            ` : ''}
+
+            <div class="mt-2">
+              ${isConfirmed ? `
+                <button class="btn btn-danger" onclick="cancelSignup('${event.id}')">Cancel Registration</button>
+              ` : isWaitlisted ? `
+                <button class="btn btn-secondary" disabled>You're on the waitlist</button>
+                <button class="btn btn-danger btn-small" onclick="cancelSignup('${event.id}')">Leave Waitlist</button>
+              ` : isFull ? `
+                <button class="btn btn-secondary" onclick="joinWaitlist('${event.id}')">Join Waitlist</button>
+              ` : `
+                <button class="btn btn-primary" onclick="signupEvent('${event.id}')">Sign Up</button>
+              `}
+            </div>
+
+            ${confirmedUsers.length > 0 ? `
+              <hr class="divider">
+              <h3>Who's Going (${confirmedUsers.length})</h3>
+              <div class="attendee-list">
+                ${confirmedUsers.map(u => `
+                  <div class="attendee-item">
+                    <div class="user-avatar">${u.full_name.charAt(0)}</div>
+                    <span>${u.full_name}</span>
+                  </div>
+                `).join('')}
+              </div>
+            ` : ''}
+
+            ${waitlistUsers.length > 0 ? `
+              <hr class="divider">
+              <h3>Waitlist (${waitlistUsers.length})</h3>
+              <div class="attendee-list">
+                ${waitlistUsers.map(u => `
+                  <div class="attendee-item">
+                    <div class="user-avatar">${u.full_name.charAt(0)}</div>
+                    <span>${u.full_name}</span>
+                  </div>
+                `).join('')}
+              </div>
+            ` : ''}
+          </div>
+        </div>
+      `;
+
+      renderApp(content);
+    }
+
+    window.signupEvent = function(eventId) {
+      const events = JSON.parse(localStorage.getItem(STORAGE_KEYS.EVENTS));
+      const event = events.find(e => e.id === eventId);
+      
+      if (!event.confirmed.includes(state.user.id)) {
+        event.confirmed.push(state.user.id);
+        localStorage.setItem(STORAGE_KEYS.EVENTS, JSON.stringify(events));
+        showToast('Successfully signed up!');
+        handleRoute();
+      }
+    }
+
+    window.joinWaitlist = function(eventId) {
+      const events = JSON.parse(localStorage.getItem(STORAGE_KEYS.EVENTS));
+      const event = events.find(e => e.id === eventId);
+      
+      if (!event.waitlist.includes(state.user.id)) {
+        event.waitlist.push(state.user.id);
+        localStorage.setItem(STORAGE_KEYS.EVENTS, JSON.stringify(events));
+        showToast('Added to waitlist');
+        handleRoute();
+      }
+    }
+
+    window.cancelSignup = function(eventId) {
+      if (!confirm('Are you sure you want to cancel?')) return;
+      
+      const events = JSON.parse(localStorage.getItem(STORAGE_KEYS.EVENTS));
+      const event = events.find(e => e.id === eventId);
+      
+      const confirmedIndex = event.confirmed.indexOf(state.user.id);
+      const waitlistIndex = event.waitlist.indexOf(state.user.id);
+      
+      if (confirmedIndex > -1) {
+        event.confirmed.splice(confirmedIndex, 1);
+        
+        // Auto-promote from waitlist
+        if (event.waitlist.length > 0 && event.capacity && event.confirmed.length < event.capacity) {
+          const promoted = event.waitlist.shift();
+          event.confirmed.push(promoted);
+          showToast('Cancelled. Waitlist user promoted.');
+        } else {
+          showToast('Registration cancelled');
+        }
+      } else if (waitlistIndex > -1) {
+        event.waitlist.splice(waitlistIndex, 1);
+        showToast('Removed from waitlist');
+      }
+      
+      localStorage.setItem(STORAGE_KEYS.EVENTS, JSON.stringify(events));
+      handleRoute();
+    }
+
+    // ===== MY =====
+    function renderMy() {
+      const events = JSON.parse(localStorage.getItem(STORAGE_KEYS.EVENTS));
+      const myEvents = events.filter(e => e.confirmed.includes(state.user.id) || e.waitlist.includes(state.user.id));
+
+      const content = `
+        <div class="header">
+          <div class="header-top">
+            <h1>My Events</h1>
+          </div>
+        </div>
+        <div class="content">
+          ${myEvents.length === 0 ? `
+            <div class="empty-state">
+              <div class="empty-state-icon">⭐</div>
+              <p>You haven't signed up for any events yet</p>
+              <button class="btn btn-primary mt-1" onclick="navigate('/events')">Browse Events</button>
+            </div>
+          ` : `
+            <div class="grid grid-2">
+              ${myEvents.map(e => {
+                const isWaitlisted = e.waitlist.includes(state.user.id);
+                return `
+                  <div class="event-card" onclick="navigate('/events/${e.id}')">
+                    <div class="event-header">
+                      <div class="event-title">${e.title}</div>
+                      ${isWaitlisted ? '<span class="badge badge-yellow">Waitlisted</span>' : '<span class="badge badge-green">Confirmed</span>'}
+                    </div>
+                    <div class="event-meta">
+                      <span class="badge badge-gray">${e.type}</span>
+                      <span class="badge badge-blue">${e.dorm}</span>
+                    </div>
+                    <div class="event-description">${e.description}</div>
+                    <div class="event-footer">
+                      <span style="color: #6B7280; font-size: 0.875rem;">${e.date} at ${e.time}</span>
+                    </div>
+                  </div>
+                `;
+              }).join('')}
+            </div>
+          `}
+        </div>
+      `;
+
+      renderApp(content);
+    }
+
+    // ===== ANNOUNCEMENTS =====
+    function renderAnnouncements() {
+      const announcements = JSON.parse(localStorage.getItem(STORAGE_KEYS.ANNOUNCEMENTS));
+      const sorted = announcements.sort((a, b) => {
+        if (a.urgent && !b.urgent) return -1;
+        if (!a.urgent && b.urgent) return 1;
+        return new Date(b.date) - new Date(a.date);
+      });
+
+      const isStaff = state.user.role === 'staff' || state.user.role === 'admin';
+
+      const content = `
+        <div class="header">
+          <div class="header-top">
+            <h1>Announcements</h1>
+          </div>
+        </div>
+        <div class="content">
+          ${sorted.map(a => {
+            const isUnread = !a.readBy.includes(state.user.id);
+            const readRate = ((a.readBy.length / 5) * 100).toFixed(0); // Assuming ~5 users for demo
+            
+            return `
+              <div class="announcement-card ${a.urgent ? 'urgent' : ''} ${isUnread ? 'unread' : ''}" onclick="markAsRead('${a.id}')">
+                <div class="announcement-header">
+                  <div class="announcement-title">${escapeHtml(a.title)}</div>
+                  <div>
+                    ${a.urgent ? '<span class="badge badge-red">Urgent</span>' : ''}
+                    ${isUnread ? '<span class="badge badge-blue">New</span>' : ''}
+                  </div>
+                </div>
+                <div class="announcement-meta">By ${escapeHtml(a.author)} • ${new Date(a.date).toLocaleString()}</div>
+                <div class="announcement-body">${escapeHtml(a.body)}</div>
+                ${isStaff ? `
+                  <div class="read-rate">
+                    📊 Read by ${a.readBy.length} users (${readRate}% read rate)
+                  </div>
+                ` : ''}
+              </div>
+            `;
+          }).join('')}
+        </div>
+      `;
+
+      renderApp(content);
+    }
+
+    window.markAsRead = function(announcementId) {
+      const announcements = JSON.parse(localStorage.getItem(STORAGE_KEYS.ANNOUNCEMENTS));
+      const announcement = announcements.find(a => a.id === announcementId);
+      
+      if (announcement && !announcement.readBy.includes(state.user.id)) {
+        announcement.readBy.push(state.user.id);
+        localStorage.setItem(STORAGE_KEYS.ANNOUNCEMENTS, JSON.stringify(announcements));
+        handleRoute();
+      }
+    }
+
+    // ===== DOCUMENTS =====
+    function renderDocuments() {
+      const content = `
+        <div class="header">
+          <div class="header-top">
+            <h1>Documents</h1>
+          </div>
+        </div>
+        <div class="content">
+          <div class="grid grid-2">
+            <div class="card" onclick="navigate('/documents/schedule')" style="cursor: pointer;">
+              <h3 class="card-title">📅 Weekly Schedule</h3>
+              <p style="color: #6B7280;">View current week's schedule and activities</p>
+            </div>
+            <div class="card" onclick="navigate('/documents/menu')" style="cursor: pointer;">
+              <h3 class="card-title">🍽️ Dining Menu</h3>
+              <p style="color: #6B7280;">Check this week's meal plan</p>
+            </div>
+          </div>
+        </div>
+      `;
+
+      renderApp(content);
+    }
+
+    function renderSchedule() {
+      const docs = JSON.parse(localStorage.getItem(STORAGE_KEYS.DOCUMENTS));
+      const activeVersion = docs.schedule.versions.find(v => v.active);
+      const isStaff = state.user.role === 'staff' || state.user.role === 'admin';
+
+      const content = `
+        <div class="header">
+          <div class="header-top">
+            <h1>Weekly Schedule</h1>
+            <div class="header-actions">
+              <button class="btn btn-secondary" onclick="navigate('/documents')">← Back</button>
+              ${isStaff ? '<button class="btn btn-primary" onclick="uploadSchedule()">Upload New Version</button>' : ''}
+            </div>
+          </div>
+        </div>
+        <div class="content">
+          <div class="card">
+            <div class="doc-viewer">
+              <h2>${activeVersion.content.title}</h2>
+              ${activeVersion.content.sections.map(s => `
+                <h3>${s.day}</h3>
+                ${s.activities.map(a => `<p>• ${a}</p>`).join('')}
+              `).join('')}
+            </div>
+          </div>
+          
+          <div class="card">
+            <h3 class="card-title">Version History</h3>
+            <div class="version-history">
+              ${docs.schedule.versions.map(v => `
+                <div class="version-item ${v.active ? 'active' : ''}">
+                  <div>
+                    <strong>${v.filename}</strong><br>
+                    <span style="font-size: 0.85rem; color: #6B7280;">
+                      Uploaded by ${v.uploadedBy} on ${new Date(v.uploadedAt).toLocaleString()}
+                    </span>
+                  </div>
+                  ${v.active ? '<span class="badge badge-green">Active</span>' : ''}
+                </div>
+              `).join('')}
+            </div>
+          </div>
+        </div>
+      `;
+
+      renderApp(content);
+    }
+
+    window.uploadSchedule = function() {
+      const filename = prompt('Enter filename (e.g., Weekly_Schedule_Feb21.pdf):');
+      if (!filename) return;
+
+      const docs = JSON.parse(localStorage.getItem(STORAGE_KEYS.DOCUMENTS));
+      
+      // Set all to inactive
+      docs.schedule.versions.forEach(v => v.active = false);
+      
+      // Add new version
+      docs.schedule.versions.unshift({
+        id: 'sch' + Date.now(),
+        filename: filename,
+        uploadedBy: state.user.full_name,
+        uploadedAt: new Date().toISOString(),
+        active: true,
+        content: {
+          title: 'Weekly Schedule - New Upload',
+          sections: [
+            { day: 'Monday', activities: ['Sample schedule content'] }
+          ]
+        }
+      });
+
+      localStorage.setItem(STORAGE_KEYS.DOCUMENTS, JSON.stringify(docs));
+      showToast('Schedule uploaded successfully');
+      handleRoute();
+    }
+
+    function renderMenu() {
+      const docs = JSON.parse(localStorage.getItem(STORAGE_KEYS.DOCUMENTS));
+      const activeVersion = docs.menu.versions.find(v => v.active);
+      const isStaff = state.user.role === 'staff' || state.user.role === 'admin';
+
+      const content = `
+        <div class="header">
+          <div class="header-top">
+            <h1>Dining Menu</h1>
+            <div class="header-actions">
+              <button class="btn btn-secondary" onclick="navigate('/documents')">← Back</button>
+              ${isStaff ? '<button class="btn btn-primary" onclick="uploadMenu()">Upload New Version</button>' : ''}
+            </div>
+          </div>
+        </div>
+        <div class="content">
+          <div class="card">
+            <div class="doc-viewer">
+              <h2>${activeVersion.content.title}</h2>
+              ${activeVersion.content.sections.map(s => `
+                <h3>${s.title}</h3>
+                ${s.items.map(item => `<p>• ${item}</p>`).join('')}
+              `).join('')}
+            </div>
+          </div>
+          
+          <div class="card">
+            <h3 class="card-title">Version History</h3>
+            <div class="version-history">
+              ${docs.menu.versions.map(v => `
+                <div class="version-item ${v.active ? 'active' : ''}">
+                  <div>
+                    <strong>${v.filename}</strong><br>
+                    <span style="font-size: 0.85rem; color: #6B7280;">
+                      Uploaded by ${v.uploadedBy} on ${new Date(v.uploadedAt).toLocaleString()}
+                    </span>
+                  </div>
+                  ${v.active ? '<span class="badge badge-green">Active</span>' : ''}
+                </div>
+              `).join('')}
+            </div>
+          </div>
+        </div>
+      `;
+
+      renderApp(content);
+    }
+
+    window.uploadMenu = function() {
+      const filename = prompt('Enter filename (e.g., Dining_Menu_Week8.pdf):');
+      if (!filename) return;
+
+      const docs = JSON.parse(localStorage.getItem(STORAGE_KEYS.DOCUMENTS));
+      
+      docs.menu.versions.forEach(v => v.active = false);
+      
+      docs.menu.versions.unshift({
+        id: 'men' + Date.now(),
+        filename: filename,
+        uploadedBy: state.user.full_name,
+        uploadedAt: new Date().toISOString(),
+        active: true,
+        content: {
+          title: 'Weekly Dining Menu - New Upload',
+          sections: [
+            { title: 'Lunch', items: ['Sample menu items'] }
+          ]
+        }
+      });
+
+      localStorage.setItem(STORAGE_KEYS.DOCUMENTS, JSON.stringify(docs));
+      showToast('Menu uploaded successfully');
+      handleRoute();
+    }
+
+    // ===== PROFILE =====
+    let settingsClicks = 0;
+    function renderProfile() {
+      const content = `
+        <div class="header">
+          <div class="header-top">
+            <h1>Profile</h1>
+            <button class="btn btn-danger" onclick="signOut()">Sign Out</button>
+          </div>
+        </div>
+        <div class="content">
+          <div class="profile-section">
+            <div class="profile-header">
+              <div class="profile-avatar">${state.user.full_name.charAt(0)}</div>
+              <div class="profile-info">
+                <h2>${state.user.full_name}</h2>
+                <p class="profile-role">${state.user.role.charAt(0).toUpperCase() + state.user.role.slice(1)}</p>
+              </div>
+            </div>
+            <div class="grid grid-2">
+              <div>
+                <strong>Email:</strong><br>
+                ${state.user.email}
+              </div>
+              ${state.user.dorm ? `
+                <div>
+                  <strong>Dorm:</strong><br>
+                  ${state.user.dorm}
+                </div>
+              ` : ''}
+              ${state.user.grade ? `
+                <div>
+                  <strong>Grade:</strong><br>
+                  ${state.user.grade}
+                </div>
+              ` : ''}
+              <div>
+                <strong>Role:</strong><br>
+                ${state.user.role}
+              </div>
+            </div>
+          </div>
+
+          <div id="demoControls" class="hidden">
+            <div class="card">
+              <h3 class="card-title">Demo Controls</h3>
+              <form onsubmit="event.preventDefault(); updateProfile(event);">
+                <div class="form-group">
+                  <label>Full Name</label>
+                  <input type="text" name="full_name" value="${state.user.full_name}">
+                </div>
+                <div class="form-group">
+                  <label>Role</label>
+                  <select name="role">
+                    <option value="student" ${state.user.role === 'student' ? 'selected' : ''}>Student</option>
+                    <option value="staff" ${state.user.role === 'staff' ? 'selected' : ''}>Staff</option>
+                    <option value="admin" ${state.user.role === 'admin' ? 'selected' : ''}>Admin</option>
+                  </select>
+                </div>
+                ${state.user.role === 'student' ? `
+                  <div class="form-group">
+                    <label>Dorm</label>
+                    <select name="dorm">
+                      <option value="Cantwell" ${state.user.dorm === 'Cantwell' ? 'selected' : ''}>Cantwell</option>
+                      <option value="Glynn" ${state.user.dorm === 'Glynn' ? 'selected' : ''}>Glynn</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label>Grade</label>
+                    <select name="grade">
+                      <option value="9" ${state.user.grade === 9 ? 'selected' : ''}>9</option>
+                      <option value="10" ${state.user.grade === 10 ? 'selected' : ''}>10</option>
+                      <option value="11" ${state.user.grade === 11 ? 'selected' : ''}>11</option>
+                      <option value="12" ${state.user.grade === 12 ? 'selected' : ''}>12</option>
+                    </select>
+                  </div>
+                ` : ''}
+                <button type="submit" class="btn btn-primary">Save Changes</button>
+              </form>
+            </div>
+          </div>
+        </div>
+        <div class="settings-icon" onclick="toggleDemoControls()">⚙︎</div>
+      `;
+
+      renderApp(content);
+    }
+
+    window.toggleDemoControls = function() {
+      settingsClicks++;
+      if (settingsClicks >= 5) {
+        document.getElementById('demoControls').classList.toggle('hidden');
+        settingsClicks = 0;
+      }
+    }
+
+    window.updateProfile = function(e) {
+      e.preventDefault();
+      const form = e.target;
+      const updates = {
+        full_name: form.full_name.value,
+        role: form.role.value
+      };
+
+      if (form.dorm) updates.dorm = form.dorm.value;
+      if (form.grade) updates.grade = parseInt(form.grade.value);
+
+      updateUser(updates);
+      showToast('Profile updated');
+      handleRoute();
+    }
+
+    window.signOut = function() {
+      clearSession();
+      navigate('/');
+      handleRoute();
+    }
+
+    // ===== ADMIN =====
+    function renderAdmin() {
+      const events = JSON.parse(localStorage.getItem(STORAGE_KEYS.EVENTS));
+      const announcements = JSON.parse(localStorage.getItem(STORAGE_KEYS.ANNOUNCEMENTS));
+      const users = JSON.parse(localStorage.getItem(STORAGE_KEYS.USERS));
+
+      const last7Days = events.reduce((acc, e) => {
+        const day = new Date(e.date).toLocaleDateString('en-US', { weekday: 'short' });
+        if (!acc[day]) acc[day] = 0;
+        acc[day] += e.confirmed.length;
+        return acc;
+      }, {});
+
+      const topEvents = events
+        .sort((a, b) => b.confirmed.length - a.confirmed.length)
+        .slice(0, 5);
+
+      const capacityAlerts = events.filter(e => e.capacity && (e.capacity - e.confirmed.length) / e.capacity < 0.1);
+
+      const content = `
+        <div class="header">
+          <div class="header-top">
+            <h1>Admin Dashboard</h1>
+          </div>
+        </div>
+        <div class="content">
+          <div class="card">
+            <h3 class="card-title">Quick Actions</h3>
+            <div style="display: flex; gap: 1rem;">
+              <button class="btn btn-primary" onclick="showCreateEventModal()">Create Event</button>
+              <button class="btn btn-primary" onclick="showCreateAnnouncementModal()">Post Announcement</button>
+            </div>
+          </div>
+
+          <div class="grid grid-2">
+            <div class="card">
+              <h3 class="card-title">Signups Last 7 Days</h3>
+              <div class="chart">
+                ${Object.entries(last7Days).map(([day, count]) => `
+                  <div style="flex: 1;">
+                    <div class="chart-bar" style="height: ${(count / Math.max(...Object.values(last7Days))) * 100}%"></div>
+                    <div class="chart-label">${day}<br>${count}</div>
+                  </div>
+                `).join('')}
+              </div>
+            </div>
+
+            <div class="card">
+              <h3 class="card-title">Capacity Alerts</h3>
+              ${capacityAlerts.length === 0 ? '<p style="color: #6B7280;">No capacity alerts</p>' : ''}
+              ${capacityAlerts.map(e => `
+                <div style="padding: 0.75rem; background: #FEE2E2; border-radius: 0.5rem; margin-bottom: 0.5rem;">
+                  <strong>${e.title}</strong><br>
+                  <span style="font-size: 0.875rem; color: #6B7280;">
+                    ${e.capacity - e.confirmed.length} spots left
+                  </span>
+                </div>
+              `).join('')}
+            </div>
+          </div>
+
+          <div class="card">
+            <h3 class="card-title">Top Events by Signups</h3>
+            <table>
+              <thead>
+                <tr>
+                  <th>Event</th>
+                  <th>Type</th>
+                  <th>Signups</th>
+                  <th>Capacity</th>
+                </tr>
+              </thead>
+              <tbody>
+                ${topEvents.map(e => `
+                  <tr>
+                    <td><strong>${e.title}</strong></td>
+                    <td>${e.type}</td>
+                    <td>${e.confirmed.length}</td>
+                    <td>${e.capacity || 'Unlimited'}</td>
+                  </tr>
+                `).join('')}
+              </tbody>
+            </table>
+          </div>
+
+          ${state.user.role === 'admin' ? `
+            <div class="card">
+              <h3 class="card-title">User Management</h3>
+              <table>
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Role</th>
+                    <th>Dorm</th>
+                    <th>Grade</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  ${users.map(u => `
+                    <tr>
+                      <td><strong>${u.full_name}</strong></td>
+                      <td>${u.email}</td>
+                      <td>${u.role}</td>
+                      <td>${u.dorm || 'N/A'}</td>
+                      <td>${u.grade || 'N/A'}</td>
+                    </tr>
+                  `).join('')}
+                </tbody>
+              </table>
+            </div>
+          ` : ''}
+        </div>
+      `;
+
+      renderApp(content);
+    }
+
+    window.showCreateEventModal = function() {
+      const modal = document.createElement('div');
+      modal.className = 'modal-overlay';
+      
+      const today = new Date().toISOString().split('T')[0];
+      const tomorrow = new Date(Date.now() + 86400000).toISOString().split('T')[0];
+      
+      modal.innerHTML = `
+        <div class="modal">
+          <div class="modal-header">
+            <h2 class="modal-title">Create Event</h2>
+            <button class="close-btn" onclick="this.closest('.modal-overlay').remove()">×</button>
+          </div>
+          
+          <div style="background: #F8FAFC; border: 1px solid #E5E7EB; border-radius: 0.5rem; padding: 1rem; margin-bottom: 1.5rem;">
+            <div style="font-weight: 600; color: #111827; margin-bottom: 0.75rem; font-size: 0.875rem;">✨ Draft with AI</div>
+            <textarea id="aiEventInput" placeholder="Paste staff message like: 'Movie night Friday 8pm Cantwell common room, 30 spots...'" style="width: 100%; padding: 0.75rem; border: 1px solid #E5E7EB; border-radius: 0.5rem; font-size: 0.875rem; min-height: 80px; font-family: inherit; margin-bottom: 0.75rem;"></textarea>
+            <button type="button" id="aiDraftBtn" class="btn btn-secondary" style="width: 100%; margin-bottom: 0.5rem;">Draft with AI</button>
+            <div id="aiDraftStatus" style="font-size: 0.8125rem; color: #6B7280;"></div>
+          </div>
+          
+          <form id="createEventForm">
+            <div class="form-group">
+              <label>Title</label>
+              <input type="text" id="eventTitle" required>
+            </div>
+            <div class="form-group">
+              <label>Type</label>
+              <select id="eventType" required>
+                <option value="Mandatory">Mandatory</option>
+                <option value="Athletics">Athletics</option>
+                <option value="Weekend Trip">Weekend Trip</option>
+                <option value="Service">Service</option>
+                <option value="Social">Social</option>
+                <option value="Wellness">Wellness</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Dorm</label>
+              <select id="eventDorm" required>
+                <option value="Both">Both</option>
+                <option value="Cantwell">Cantwell</option>
+                <option value="Glynn">Glynn</option>
+              </select>
+            </div>
+            
+            <div class="form-group">
+              <label>Date</label>
+              <div style="display: flex; gap: 0.5rem; margin-bottom: 0.5rem;">
+                <button type="button" class="btn btn-secondary btn-small" onclick="document.getElementById('eventDate').value = '${today}'">Today</button>
+                <button type="button" class="btn btn-secondary btn-small" onclick="document.getElementById('eventDate').value = '${tomorrow}'">Tomorrow</button>
+              </div>
+              <input type="date" id="eventDate" required style="font-size: 1rem; padding: 0.75rem;">
+              <div id="datePreview" style="margin-top: 0.5rem; color: #6B7280; font-size: 0.9rem;"></div>
+            </div>
+            
+            <div class="form-group">
+              <label>Time</label>
+              <div style="display: flex; gap: 0.5rem; margin-bottom: 0.5rem; flex-wrap: wrap;">
+                <button type="button" class="btn btn-secondary btn-small" onclick="document.getElementById('eventTime').value = '07:00'">7:00 AM</button>
+                <button type="button" class="btn btn-secondary btn-small" onclick="document.getElementById('eventTime').value = '12:00'">12:00 PM</button>
+                <button type="button" class="btn btn-secondary btn-small" onclick="document.getElementById('eventTime').value = '15:00'">3:00 PM</button>
+                <button type="button" class="btn btn-secondary btn-small" onclick="document.getElementById('eventTime').value = '19:00'">7:00 PM</button>
+              </div>
+              <input type="time" id="eventTime" required style="font-size: 1rem; padding: 0.75rem;">
+              <div id="timePreview" style="margin-top: 0.5rem; color: #6B7280; font-size: 0.9rem;"></div>
+            </div>
+            
+            <div class="form-group">
+              <label>Location</label>
+              <input type="text" id="eventLocation" required>
+            </div>
+            <div class="form-group">
+              <label>Description</label>
+              <textarea id="eventDescription" required></textarea>
+            </div>
+            <div class="form-group">
+              <label>Capacity (leave blank for unlimited)</label>
+              <input type="number" id="eventCapacity" min="1">
+            </div>
+            <button type="button" class="btn btn-primary" onclick="
+              const title = document.getElementById('eventTitle').value;
+              const type = document.getElementById('eventType').value;
+              const dorm = document.getElementById('eventDorm').value;
+              const date = document.getElementById('eventDate').value;
+              const time = document.getElementById('eventTime').value;
+              const location = document.getElementById('eventLocation').value;
+              const description = document.getElementById('eventDescription').value;
+              const capacity = document.getElementById('eventCapacity').value;
+              
+              if (!title || !type || !dorm || !date || !time || !location || !description) {
+                alert('Please fill in all required fields');
+                return;
+              }
+              
+              const events = JSON.parse(localStorage.getItem('dormops_events'));
+              const newEvent = {
+                id: 'e' + Date.now(),
+                title: title,
+                type: type,
+                dorm: dorm,
+                date: date,
+                time: time,
+                location: location,
+                description: description,
+                capacity: capacity ? parseInt(capacity) : null,
+                confirmed: [],
+                waitlist: []
+              };
+              
+              events.push(newEvent);
+              localStorage.setItem('dormops_events', JSON.stringify(events));
+              
+              this.closest('.modal-overlay').remove();
+              
+              const toast = document.createElement('div');
+              toast.className = 'toast';
+              toast.innerHTML = '<span>✓</span><span>Event created successfully</span>';
+              document.body.appendChild(toast);
+              setTimeout(() => toast.remove(), 3000);
+              
+              window.location.reload();
+            ">Create Event</button>
+          </form>
+        </div>
+      `;
+      document.body.appendChild(modal);
+      
+      // AI Draft Handler
+      document.getElementById('aiDraftBtn').addEventListener('click', function() {
+        const input = document.getElementById('aiEventInput').value;
+        const status = document.getElementById('aiDraftStatus');
+        
+        if (!input.trim()) {
+          status.innerHTML = '<span style="color: #DC2626;">Please paste a message first.</span>';
+          return;
+        }
+        
+        try {
+          const parsed = parseEventMessage(input);
+          const applied = validateAndPopulateEventForm(parsed);
+          
+          if (applied.length > 0) {
+            status.innerHTML = '<span style="color: #059669;">✓ Draft applied: ' + applied.join(', ') + '</span>';
+          } else {
+            status.innerHTML = '<span style="color: #92400E;">⚠ Couldn\'t confidently parse fields. Please fill manually.</span>';
+          }
+        } catch (err) {
+          status.innerHTML = '<span style="color: #DC2626;">Parse error. Please fill manually.</span>';
+        }
+      });
+      
+      // Add preview listeners
+      const dateInput = modal.querySelector('#eventDate');
+      const timeInput = modal.querySelector('#eventTime');
+      const datePreview = modal.querySelector('#datePreview');
+      const timePreview = modal.querySelector('#timePreview');
+      
+      dateInput.addEventListener('change', function() {
+        if (this.value) {
+          const date = new Date(this.value + 'T00:00:00');
+          datePreview.textContent = date.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric', year: 'numeric' });
+        }
+      });
+      
+      timeInput.addEventListener('change', function() {
+        if (this.value) {
+          const [hours, minutes] = this.value.split(':');
+          const date = new Date();
+          date.setHours(parseInt(hours), parseInt(minutes));
+          timePreview.textContent = date.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' });
+        }
+      });
+    }
+
+    window.createEvent = function(e) {
+      e.preventDefault();
+      const form = e.target;
+      
+      const events = JSON.parse(localStorage.getItem(STORAGE_KEYS.EVENTS));
+      const newEvent = {
+        id: 'e' + Date.now(),
+        title: form.title.value,
+        type: form.type.value,
+        dorm: form.dorm.value,
+        date: form.date.value,
+        time: form.time.value,
+        location: form.location.value,
+        description: form.description.value,
+        capacity: form.capacity.value ? parseInt(form.capacity.value) : null,
+        confirmed: [],
+        waitlist: []
+      };
+      
+      events.push(newEvent);
+      localStorage.setItem(STORAGE_KEYS.EVENTS, JSON.stringify(events));
+      
+      showToast('Event created successfully');
+      document.querySelector('.modal-overlay').remove();
+      handleRoute();
+    }
+    
+    function parseEventMessage(text) {
+      const result = {};
+      const lower = text.toLowerCase();
+      
+      // Type detection
+      if (lower.includes('mandatory') || lower.includes('required')) result.type = 'Mandatory';
+      else if (lower.includes('basketball') || lower.includes('practice') || lower.includes('game') || lower.includes('athletic')) result.type = 'Athletics';
+      else if (lower.includes('trip') || lower.includes('beach') || lower.includes('malibu') || lower.includes('hike')) result.type = 'Weekend Trip';
+      else if (lower.includes('service') || lower.includes('volunteer') || lower.includes('food bank')) result.type = 'Service';
+      else if (lower.includes('movie') || lower.includes('social') || lower.includes('party')) result.type = 'Social';
+      else if (lower.includes('yoga') || lower.includes('wellness') || lower.includes('meditation')) result.type = 'Wellness';
+      
+      // Dorm detection
+      if (lower.includes('cantwell')) result.dorm = 'Cantwell';
+      else if (lower.includes('glynn')) result.dorm = 'Glynn';
+      else if (lower.includes('both') || lower.includes('all')) result.dorm = 'Both';
+      else if (!lower.includes('cantwell') && !lower.includes('glynn')) result.dorm = 'Both'; // default
+      
+      // Title extraction (first few words or key phrase)
+      let titleMatch = text.match(/^([^,.!?]{5,50})/);
+      if (titleMatch) {
+        result.title = titleMatch[1].trim().replace(/\b\w/g, l => l.toUpperCase());
+      }
+      
+      // Location detection
+      const locationKeywords = ['common room', 'gymnasium', 'gym', 'library', 'cafeteria', 'field', 'gate', 'beach', 'multipurpose room'];
+      for (const keyword of locationKeywords) {
+        if (lower.includes(keyword)) {
+          result.location = keyword.split(' ').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
+          break;
+        }
+      }
+      
+      // Capacity extraction
+      const capMatch = text.match(/capacity\s*[:=]?\s*(\d+)|(\d+)\s*spots?|(\d+)\s*people/i);
+      if (capMatch) {
+        const cap = parseInt(capMatch[1] || capMatch[2] || capMatch[3]);
+        if (cap > 0) result.capacity = cap;
+      }
+      
+      // Time extraction (HH:MM format or common formats)
+      const timeMatch = text.match(/(\d{1,2}):(\d{2})\s*(am|pm)?|(\d{1,2})\s*(am|pm)/i);
+      if (timeMatch) {
+        let hours = parseInt(timeMatch[1] || timeMatch[4]);
+        const minutes = timeMatch[2] || '00';
+        const meridiem = (timeMatch[3] || timeMatch[5] || '').toLowerCase();
+        
+        if (meridiem === 'pm' && hours !== 12) hours += 12;
+        if (meridiem === 'am' && hours === 12) hours = 0;
+        
+        if (hours >= 0 && hours <= 23) {
+          result.time = hours.toString().padStart(2, '0') + ':' + minutes;
+        }
+      }
+      
+      // Date extraction (simple patterns only - skip relative dates)
+      const dateMatch = text.match(/(\d{1,2})\/(\d{1,2})\/(\d{2,4})|(\d{4})-(\d{2})-(\d{2})/);
+      if (dateMatch) {
+        if (dateMatch[4]) {
+          // YYYY-MM-DD format
+          result.date = `${dateMatch[4]}-${dateMatch[5]}-${dateMatch[6]}`;
+        } else {
+          // M/D/YYYY format
+          const month = dateMatch[1].padStart(2, '0');
+          const day = dateMatch[2].padStart(2, '0');
+          let year = dateMatch[3];
+          if (year.length === 2) year = '20' + year;
+          result.date = `${year}-${month}-${day}`;
+        }
+      }
+      
+      // Description (use full text, cleaned)
+      result.description = text.trim();
+      
+      return result;
+    }
+    
+    function validateAndPopulateEventForm(parsed) {
+      const applied = [];
+      
+      // Title
+      if (parsed.title && !document.getElementById('eventTitle').value) {
+        document.getElementById('eventTitle').value = parsed.title;
+        applied.push('Title');
+      }
+      
+      // Type
+      if (parsed.type) {
+        const validTypes = ['Mandatory', 'Athletics', 'Weekend Trip', 'Service', 'Social', 'Wellness'];
+        if (validTypes.includes(parsed.type) && !document.getElementById('eventType').value) {
+          document.getElementById('eventType').value = parsed.type;
+          applied.push('Type');
+        }
+      }
+      
+      // Dorm
+      if (parsed.dorm) {
+        const validDorms = ['Both', 'Cantwell', 'Glynn'];
+        if (validDorms.includes(parsed.dorm) && !document.getElementById('eventDorm').value) {
+          document.getElementById('eventDorm').value = parsed.dorm;
+          applied.push('Dorm');
+        }
+      }
+      
+      // Date
+      if (parsed.date && isValidDate(parsed.date) && !document.getElementById('eventDate').value) {
+        document.getElementById('eventDate').value = parsed.date;
+        applied.push('Date');
+      }
+      
+      // Time
+      if (parsed.time && isValidTime(parsed.time) && !document.getElementById('eventTime').value) {
+        document.getElementById('eventTime').value = parsed.time;
+        applied.push('Time');
+      }
+      
+      // Location
+      if (parsed.location && !document.getElementById('eventLocation').value) {
+        document.getElementById('eventLocation').value = parsed.location;
+        applied.push('Location');
+      }
+      
+      // Description
+      if (parsed.description && !document.getElementById('eventDescription').value) {
+        document.getElementById('eventDescription').value = parsed.description;
+        applied.push('Description');
+      }
+      
+      // Capacity
+      if (parsed.capacity && parsed.capacity > 0 && !document.getElementById('eventCapacity').value) {
+        document.getElementById('eventCapacity').value = parsed.capacity;
+        applied.push('Capacity');
+      }
+      
+      return applied;
+    }
+    
+    function isValidDate(dateStr) {
+      if (!/^\d{4}-\d{2}-\d{2}$/.test(dateStr)) return false;
+      const date = new Date(dateStr + 'T00:00:00');
+      return date instanceof Date && !isNaN(date) && date.toISOString().startsWith(dateStr);
+    }
+    
+    function isValidTime(timeStr) {
+      if (!/^\d{2}:\d{2}$/.test(timeStr)) return false;
+      const [hours, minutes] = timeStr.split(':').map(Number);
+      return hours >= 0 && hours <= 23 && minutes >= 0 && minutes <= 59;
+    }
+
+    window.showCreateAnnouncementModal = function() {
+      const modal = document.createElement('div');
+      modal.className = 'modal-overlay';
+      modal.innerHTML = `
+        <div class="modal">
+          <div class="modal-header">
+            <h2 class="modal-title">Post Announcement</h2>
+            <button class="close-btn" onclick="this.closest('.modal-overlay').remove()">×</button>
+          </div>
+          <form id="createAnnouncementForm">
+            <div class="form-group">
+              <label>Title</label>
+              <input type="text" id="announcementTitle" required>
+            </div>
+            <div class="form-group">
+              <label>Body</label>
+              <textarea id="announcementBody" rows="5" required></textarea>
+            </div>
+            <div class="form-group">
+              <label class="checkbox-label">
+                <input type="checkbox" id="announcementUrgent">
+                Mark as urgent
+              </label>
+            </div>
+            <button type="button" class="btn btn-primary" onclick="
+              const title = document.getElementById('announcementTitle').value;
+              const body = document.getElementById('announcementBody').value;
+              const urgent = document.getElementById('announcementUrgent').checked;
+              
+              if (!title || !body) {
+                alert('Please fill in all required fields');
+                return;
+              }
+              
+              const announcements = JSON.parse(localStorage.getItem('dormops_announcements'));
+              const session = JSON.parse(localStorage.getItem('dormops_session'));
+              const users = JSON.parse(localStorage.getItem('dormops_users'));
+              const currentUser = users.find(u => u.id === session.userId);
+              
+              const newAnnouncement = {
+                id: 'a' + Date.now(),
+                title: title,
+                body: body,
+                author: currentUser.full_name,
+                date: new Date().toISOString(),
+                urgent: urgent,
+                readBy: []
+              };
+              
+              announcements.unshift(newAnnouncement);
+              localStorage.setItem('dormops_announcements', JSON.stringify(announcements));
+              
+              this.closest('.modal-overlay').remove();
+              
+              const toast = document.createElement('div');
+              toast.className = 'toast';
+              toast.innerHTML = '<span>✓</span><span>Announcement posted successfully</span>';
+              document.body.appendChild(toast);
+              setTimeout(() => toast.remove(), 3000);
+              
+              window.location.reload();
+            ">Post Announcement</button>
+          </form>
+        </div>
+      `;
+      document.body.appendChild(modal);
+    }
+
+    window.createAnnouncement = function(e) {
+      e.preventDefault();
+      const form = e.target;
+      
+      const announcements = JSON.parse(localStorage.getItem(STORAGE_KEYS.ANNOUNCEMENTS));
+      const newAnnouncement = {
+        id: 'a' + Date.now(),
+        title: form.title.value,
+        body: form.body.value,
+        author: state.user.full_name,
+        date: new Date().toISOString(),
+        urgent: form.urgent.checked,
+        readBy: []
+      };
+      
+      announcements.unshift(newAnnouncement);
+      localStorage.setItem(STORAGE_KEYS.ANNOUNCEMENTS, JSON.stringify(announcements));
+      
+      showToast('Announcement posted successfully');
+      document.querySelector('.modal-overlay').remove();
+      handleRoute();
+    }
+
+    // ===== INIT =====
+    initStorage();
+    loadSession();
+    handleRoute();
+  </script>
+</body>
+</html>
