@@ -1089,6 +1089,464 @@
         padding: 1rem;
       }
     }
+
+    /* ===== CALENDAR STYLES ===== */
+    .calendar-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .calendar-nav {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .calendar-month-label {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #002664;
+      min-width: 200px;
+      text-align: center;
+    }
+
+    .calendar-view-toggle {
+      display: flex;
+      background: white;
+      border-radius: 12px;
+      border: 2px solid #E5E7EB;
+      overflow: hidden;
+    }
+
+    .calendar-view-toggle button {
+      padding: 0.5rem 1rem;
+      border: none;
+      background: transparent;
+      cursor: pointer;
+      font-weight: 500;
+      transition: all 0.2s;
+      font-family: inherit;
+    }
+
+    .calendar-view-toggle button.active {
+      background: #002664;
+      color: white;
+    }
+
+    .calendar-filters {
+      display: flex;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+      margin-top: 1rem;
+    }
+
+    .filter-group {
+      display: flex;
+      gap: 0.5rem;
+      align-items: center;
+    }
+
+    .filter-tag {
+      padding: 0.4rem 0.75rem;
+      border-radius: 8px;
+      border: 2px solid #E5E7EB;
+      background: white;
+      cursor: pointer;
+      font-size: 0.875rem;
+      font-weight: 500;
+      transition: all 0.2s;
+    }
+
+    .filter-tag:hover {
+      border-color: #002664;
+    }
+
+    .filter-tag.active {
+      border-color: #002664;
+      background: #EEF2FF;
+      color: #002664;
+    }
+
+    .calendar-grid {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 1px;
+      background: #E5E7EB;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid #E5E7EB;
+      margin-top: 1.5rem;
+    }
+
+    .calendar-day-header {
+      background: #F9FAFB;
+      padding: 0.75rem;
+      text-align: center;
+      font-weight: 600;
+      font-size: 0.875rem;
+      color: #6B7280;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .calendar-day-cell {
+      background: white;
+      min-height: 120px;
+      padding: 0.5rem;
+      position: relative;
+      transition: background 0.2s;
+    }
+
+    .calendar-day-cell:hover {
+      background: #F9FAFB;
+    }
+
+    .calendar-day-cell.other-month {
+      background: #F9FAFB;
+      opacity: 0.5;
+    }
+
+    .calendar-day-cell.today {
+      background: #EFF6FF;
+      border: 2px solid #3B82F6;
+    }
+
+    .calendar-day-number {
+      font-weight: 600;
+      color: #1F2937;
+      margin-bottom: 0.5rem;
+      font-size: 0.875rem;
+    }
+
+    .calendar-day-cell.other-month .calendar-day-number {
+      color: #9CA3AF;
+    }
+
+    .calendar-event-pill {
+      font-size: 0.75rem;
+      padding: 0.25rem 0.5rem;
+      margin-bottom: 0.25rem;
+      border-radius: 6px;
+      cursor: pointer;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      transition: transform 0.1s, box-shadow 0.1s;
+      border-left: 3px solid;
+    }
+
+    .calendar-event-pill:hover {
+      transform: translateX(2px);
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    .calendar-event-pill.allday {
+      background: #FEF3C7;
+      border-left-color: #F59E0B;
+      color: #92400E;
+      font-weight: 600;
+    }
+
+    .calendar-event-pill.timed {
+      background: #DBEAFE;
+      border-left-color: #3B82F6;
+      color: #1E40AF;
+    }
+
+    .calendar-event-pill.mandatory {
+      background: #FEE2E2;
+      border-left-color: #DC2626;
+      color: #991B1B;
+      font-weight: 600;
+    }
+
+    .calendar-more-events {
+      font-size: 0.75rem;
+      color: #6B7280;
+      font-weight: 500;
+      margin-top: 0.25rem;
+      cursor: pointer;
+    }
+
+    .calendar-more-events:hover {
+      color: #002664;
+      text-decoration: underline;
+    }
+
+    /* Agenda View */
+    .agenda-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+
+    .agenda-day-group {
+      background: white;
+      border-radius: 12px;
+      padding: 1.5rem;
+      border: 1px solid #E5E7EB;
+    }
+
+    .agenda-day-header {
+      font-size: 1.125rem;
+      font-weight: 700;
+      color: #002664;
+      margin-bottom: 1rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 2px solid #E5E7EB;
+    }
+
+    .agenda-event-item {
+      display: flex;
+      gap: 1rem;
+      padding: 1rem;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.2s;
+      align-items: flex-start;
+    }
+
+    .agenda-event-item:hover {
+      background: #F9FAFB;
+    }
+
+    .agenda-event-time {
+      min-width: 80px;
+      font-weight: 600;
+      color: #6B7280;
+      font-size: 0.875rem;
+    }
+
+    .agenda-event-details {
+      flex: 1;
+    }
+
+    .agenda-event-title {
+      font-weight: 600;
+      color: #1F2937;
+      margin-bottom: 0.25rem;
+    }
+
+    .agenda-event-meta {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      font-size: 0.8125rem;
+      color: #6B7280;
+    }
+
+    /* Event Detail Modal */
+    .event-detail-modal .modal {
+      max-width: 600px;
+    }
+
+    .event-detail-header {
+      margin-bottom: 1.5rem;
+    }
+
+    .event-detail-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #1F2937;
+      margin-bottom: 0.5rem;
+    }
+
+    .event-detail-badges {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      margin-top: 0.75rem;
+    }
+
+    .event-detail-section {
+      margin-bottom: 1.5rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid #E5E7EB;
+    }
+
+    .event-detail-section:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+      margin-bottom: 0;
+    }
+
+    .event-detail-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: #6B7280;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 0.5rem;
+    }
+
+    .event-detail-value {
+      color: #1F2937;
+      font-size: 0.9375rem;
+    }
+
+    .event-capacity-bar {
+      height: 8px;
+      background: #E5E7EB;
+      border-radius: 4px;
+      overflow: hidden;
+      margin-top: 0.5rem;
+    }
+
+    .event-capacity-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #10B981 0%, #059669 100%);
+      transition: width 0.3s;
+    }
+
+    .event-capacity-fill.warning {
+      background: linear-gradient(90deg, #F59E0B 0%, #D97706 100%);
+    }
+
+    .event-capacity-fill.full {
+      background: linear-gradient(90deg, #EF4444 0%, #DC2626 100%);
+    }
+
+    .event-attendees-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 0.5rem;
+      margin-top: 1rem;
+    }
+
+    .attendee-chip {
+      background: #F3F4F6;
+      padding: 0.5rem 0.75rem;
+      border-radius: 8px;
+      font-size: 0.875rem;
+      color: #374151;
+    }
+
+    .attendee-chip.waitlist {
+      background: #FEF3C7;
+      color: #92400E;
+    }
+
+    .event-action-buttons {
+      display: flex;
+      gap: 0.75rem;
+      margin-top: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .mandatory-notice {
+      background: linear-gradient(135deg, #FEE2E2 0%, #FECACA 100%);
+      border: 2px solid #FCA5A5;
+      border-radius: 12px;
+      padding: 1rem;
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .mandatory-notice-icon {
+      font-size: 1.5rem;
+    }
+
+    .mandatory-notice-text {
+      flex: 1;
+      color: #991B1B;
+      font-weight: 600;
+      font-size: 0.9375rem;
+    }
+
+    /* Notification Bell */
+    .notification-bell {
+      position: relative;
+      cursor: pointer;
+      padding: 0.5rem;
+      border-radius: 8px;
+      transition: background 0.2s;
+      font-size: 1.25rem;
+    }
+
+    .notification-bell:hover {
+      background: rgba(0,0,0,0.05);
+    }
+
+    .notification-badge {
+      position: absolute;
+      top: 0;
+      right: 0;
+      background: #DC2626;
+      color: white;
+      font-size: 0.7rem;
+      font-weight: 700;
+      padding: 0.125rem 0.375rem;
+      border-radius: 10px;
+      min-width: 18px;
+      text-align: center;
+    }
+
+    .notification-dropdown {
+      position: absolute;
+      top: calc(100% + 0.5rem);
+      right: 0;
+      width: 360px;
+      max-height: 400px;
+      overflow-y: auto;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+      border: 1px solid #E5E7EB;
+      z-index: 1000;
+    }
+
+    .notification-header {
+      padding: 1rem;
+      border-bottom: 1px solid #E5E7EB;
+      font-weight: 700;
+      color: #1F2937;
+    }
+
+    .notification-item {
+      padding: 1rem;
+      border-bottom: 1px solid #F3F4F6;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .notification-item:hover {
+      background: #F9FAFB;
+    }
+
+    .notification-item.unread {
+      background: #EFF6FF;
+    }
+
+    .notification-item-title {
+      font-weight: 600;
+      color: #1F2937;
+      margin-bottom: 0.25rem;
+      font-size: 0.875rem;
+    }
+
+    .notification-item-message {
+      color: #6B7280;
+      font-size: 0.8125rem;
+    }
+
+    .notification-item-time {
+      color: #9CA3AF;
+      font-size: 0.75rem;
+      margin-top: 0.25rem;
+    }
+
+    .notification-empty {
+      padding: 2rem;
+      text-align: center;
+      color: #9CA3AF;
+    }
   </style>
 </head>
 <body>
@@ -1106,7 +1564,9 @@
       SESSION: 'dormops_session',
       EVENTS: 'dormops_events',
       ANNOUNCEMENTS: 'dormops_announcements',
-      DOCUMENTS: 'dormops_documents'
+      DOCUMENTS: 'dormops_documents',
+      RSVPS: 'dormops_rsvps',
+      NOTIFICATIONS: 'dormops_notifications'
     };
 
     // Data Access Layer - centralizes all localStorage operations
@@ -1117,12 +1577,16 @@
       let announcementsCache = null;
       let usersCache = null;
       let docsCache = null;
+      let rsvpsCache = null;
+      let notificationsCache = null;
       
       const CACHE_DURATION = 5000; // 5 seconds
       let eventsCacheTime = 0;
       let announcementsCacheTime = 0;
       let usersCacheTime = 0;
       let docsCacheTime = 0;
+      let rsvpsCacheTime = 0;
+      let notificationsCacheTime = 0;
       
       return {
         // Events with caching
@@ -1195,6 +1659,89 @@
           docsCache = docs;
           docsCacheTime = Date.now();
           return docs;
+        },
+        
+        // ===== RSVPS =====
+        getRSVPs() {
+          const now = Date.now();
+          if (rsvpsCache && now - rsvpsCacheTime < CACHE_DURATION) {
+            return [...rsvpsCache];
+          }
+          const data = localStorage.getItem(STORAGE_KEYS.RSVPS);
+          rsvpsCache = data ? JSON.parse(data) : [];
+          rsvpsCacheTime = now;
+          return [...rsvpsCache];
+        },
+        
+        saveRSVPs(rsvps) {
+          localStorage.setItem(STORAGE_KEYS.RSVPS, JSON.stringify(rsvps));
+          rsvpsCache = rsvps;
+          rsvpsCacheTime = Date.now();
+        },
+        
+        addRSVP(eventId, userId, status = 'going') {
+          const rsvps = this.getRSVPs();
+          const existing = rsvps.find(r => r.event_id === eventId && r.user_id === userId);
+          if (existing) {
+            existing.status = status;
+            existing.timestamp = new Date().toISOString();
+          } else {
+            rsvps.push({
+              event_id: eventId,
+              user_id: userId,
+              status: status,
+              timestamp: new Date().toISOString()
+            });
+          }
+          this.saveRSVPs(rsvps);
+        },
+        
+        removeRSVP(eventId, userId) {
+          const rsvps = this.getRSVPs();
+          const filtered = rsvps.filter(r => !(r.event_id === eventId && r.user_id === userId));
+          this.saveRSVPs(filtered);
+        },
+        
+        // ===== NOTIFICATIONS =====
+        getNotifications() {
+          const now = Date.now();
+          if (notificationsCache && now - notificationsCacheTime < CACHE_DURATION) {
+            return [...notificationsCache];
+          }
+          const data = localStorage.getItem(STORAGE_KEYS.NOTIFICATIONS);
+          notificationsCache = data ? JSON.parse(data) : [];
+          notificationsCacheTime = now;
+          return [...notificationsCache];
+        },
+        
+        saveNotifications(notifications) {
+          localStorage.setItem(STORAGE_KEYS.NOTIFICATIONS, JSON.stringify(notifications));
+          notificationsCache = notifications;
+          notificationsCacheTime = Date.now();
+        },
+        
+        addNotification(eventId, userId, type, message) {
+          const notifications = this.getNotifications();
+          notifications.push({
+            id: 'n' + Date.now(),
+            event_id: eventId,
+            user_id: userId,
+            type: type,
+            message: message,
+            timestamp: new Date().toISOString(),
+            read: false,
+            sent: false
+          });
+          this.saveNotifications(notifications);
+        },
+        
+        markNotificationRead(notificationId) {
+          const notifications = this.getNotifications();
+          const notif = notifications.find(n => n.id === notificationId);
+          if (notif) {
+            notif.read = true;
+            this.saveNotifications(notifications);
+          }
         }
       };
     })();
@@ -1605,6 +2152,45 @@
         };
         localStorage.setItem(STORAGE_KEYS.DOCUMENTS, JSON.stringify(seedDocs));
       }
+
+      // Migrate old confirmed/waitlist arrays to new RSVP system
+      if (!localStorage.getItem(STORAGE_KEYS.RSVPS)) {
+        const events = JSON.parse(localStorage.getItem(STORAGE_KEYS.EVENTS) || '[]');
+        const rsvps = [];
+        
+        events.forEach(event => {
+          // Migrate confirmed users
+          if (event.confirmed && event.confirmed.length > 0) {
+            event.confirmed.forEach(userId => {
+              rsvps.push({
+                event_id: event.id,
+                user_id: userId,
+                status: 'going',
+                timestamp: new Date().toISOString()
+              });
+            });
+          }
+          
+          // Migrate waitlist users
+          if (event.waitlist && event.waitlist.length > 0) {
+            event.waitlist.forEach(userId => {
+              rsvps.push({
+                event_id: event.id,
+                user_id: userId,
+                status: 'waitlist',
+                timestamp: new Date().toISOString()
+              });
+            });
+          }
+        });
+        
+        localStorage.setItem(STORAGE_KEYS.RSVPS, JSON.stringify(rsvps));
+      }
+
+      // Initialize empty notifications if not exists
+      if (!localStorage.getItem(STORAGE_KEYS.NOTIFICATIONS)) {
+        localStorage.setItem(STORAGE_KEYS.NOTIFICATIONS, JSON.stringify([]));
+      }
     }
 
     function loadSession() {
@@ -1856,6 +2442,7 @@
       '/events': renderEvents,
       '/events/:id': renderEventDetail,
       '/my': renderMy,
+      '/calendar': renderCalendar,
       '/announcements': renderAnnouncements,
       '/documents': renderDocuments,
       '/documents/schedule': renderSchedule,
@@ -1864,7 +2451,7 @@
       '/admin': renderAdmin
     };
 
-    const protectedRoutes = ['/home', '/events', '/events/:id', '/my', '/announcements', '/documents', '/documents/schedule', '/documents/menu', '/profile', '/admin'];
+    const protectedRoutes = ['/home', '/events', '/events/:id', '/my', '/calendar', '/announcements', '/documents', '/documents/schedule', '/documents/menu', '/profile', '/admin'];
     const publicRoutes = ['/', '/login', '/signup'];
 
     function handleRoute() {
@@ -1956,6 +2543,10 @@
               <a class="${currentRoute === '/my' ? 'active' : ''}" onclick="navigate('/my'); return false;" style="cursor: pointer;">
                 <span class="icon">⭐</span>
                 <span>My Events</span>
+              </a>
+              <a class="${currentRoute === '/calendar' ? 'active' : ''}" onclick="navigate('/calendar'); return false;" style="cursor: pointer;">
+                <span class="icon">📆</span>
+                <span>Calendar</span>
               </a>
               <a class="${currentRoute === '/announcements' ? 'active' : ''}" onclick="navigate('/announcements'); return false;" style="cursor: pointer;">
                 <span class="icon">📢</span>
@@ -2771,6 +3362,192 @@
       }
     }
 
+    // ===== CALENDAR =====
+    let calendarState = {
+      view: 'month',
+      month: new Date(),
+      filters: { types: [], dorms: [] }
+    };
+
+    function renderCalendar() {
+      const events = DB.getEvents();
+      const rsvps = DB.getRSVPs();
+
+      // Filter events
+      const filteredEvents = events.filter(e => {
+        if (calendarState.filters.types.length > 0 && !calendarState.filters.types.includes(e.type)) return false;
+        if (calendarState.filters.dorms.length > 0 && !calendarState.filters.dorms.includes(e.dorm)) return false;
+        return true;
+      });
+
+      const monthYear = calendarState.month.toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
+      const unreadNotifications = DB.getNotifications().filter(n => n.user_id === state.user.id && !n.read).length;
+      
+      const content = `
+        <div class="header">
+          <div class="header-top">
+            <h1>Calendar</h1>
+            <div class="notification-bell" onclick="toggleNotifications()">
+              🔔
+              ${unreadNotifications > 0 ? `<span class="notification-badge">${unreadNotifications}</span>` : ''}
+            </div>
+          </div>
+        </div>
+        <div class="content">
+          <div class="calendar-header">
+            <div class="calendar-nav">
+              <button class="btn btn-secondary btn-small" onclick="previousMonth()">←</button>
+              <div class="calendar-month-label">${monthYear}</div>
+              <button class="btn btn-secondary btn-small" onclick="nextMonth()">→</button>
+              <button class="btn btn-secondary btn-small" onclick="goToToday()">Today</button>
+            </div>
+            
+            <div class="calendar-view-toggle">
+              <button class="${calendarState.view === 'month' ? 'active' : ''}" onclick="switchView('month')">Month</button>
+              <button class="${calendarState.view === 'agenda' ? 'active' : ''}" onclick="switchView('agenda')">Agenda</button>
+            </div>
+          </div>
+
+          <div class="calendar-filters">
+            <div class="filter-group">
+              <span style="font-weight:600; font-size:0.875rem; color:#6B7280;">Type:</span>
+              ${['Mandatory', 'Athletics', 'Weekend Trip', 'Service', 'Social', 'Wellness'].map(type => `
+                <div class="filter-tag ${calendarState.filters.types.includes(type) ? 'active' : ''}" onclick="toggleTypeFilter('${type}')">
+                  ${type}
+                </div>
+              `).join('')}
+            </div>
+            <div class="filter-group">
+              <span style="font-weight:600; font-size:0.875rem; color:#6B7280;">Dorm:</span>
+              ${['Both', 'Cantwell', 'Glynn'].map(dorm => `
+                <div class="filter-tag ${calendarState.filters.dorms.includes(dorm) ? 'active' : ''}" onclick="toggleDormFilter('${dorm}')">
+                  ${dorm}
+                </div>
+              `).join('')}
+            </div>
+          </div>
+
+          <div id="calendarView">
+            ${calendarState.view === 'month' ? renderMonthView(calendarState.month, filteredEvents) : renderAgendaView(filteredEvents)}
+          </div>
+        </div>
+      `;
+
+      renderApp(content);
+    }
+
+    function renderMonthView(date, events) {
+      const year = date.getFullYear();
+      const month = date.getMonth();
+      const firstDay = new Date(year, month, 1);
+      const startDate = new Date(firstDay);
+      startDate.setDate(startDate.getDate() - firstDay.getDay());
+
+      const today = new Date();
+      today.setHours(0, 0, 0, 0);
+
+      let html = '<div class="calendar-grid">';
+      
+      ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].forEach(day => {
+        html += `<div class="calendar-day-header">${day}</div>`;
+      });
+
+      const currentDate = new Date(startDate);
+      for (let i = 0; i < 42; i++) {
+        const dateStr = currentDate.toISOString().split('T')[0];
+        const dayEvents = events.filter(e => e.date === dateStr);
+        const isToday = currentDate.toDateString() === today.toDateString();
+        const isOtherMonth = currentDate.getMonth() !== month;
+
+        html += `<div class="calendar-day-cell ${isOtherMonth ? 'other-month' : ''} ${isToday ? 'today' : ''}">`;
+        html += `<div class="calendar-day-number">${currentDate.getDate()}</div>`;
+
+        const allDayEvents = dayEvents.filter(e => !e.time);
+        const timedEvents = dayEvents.filter(e => e.time).sort((a, b) => a.time.localeCompare(b.time));
+
+        const visibleEvents = [...allDayEvents, ...timedEvents].slice(0, 3);
+        visibleEvents.forEach(e => {
+          const isMandatory = e.type === 'Mandatory';
+          const pillClass = isMandatory ? 'mandatory' : (e.time ? 'timed' : 'allday');
+          html += `<div class="calendar-event-pill ${pillClass}" onclick="openEventDetail('${e.id}')">`;
+          html += e.time ? `${formatTime(e.time)} ${escapeHtml(e.title)}` : escapeHtml(e.title);
+          html += `</div>`;
+        });
+
+        if (dayEvents.length > 3) {
+          html += `<div class="calendar-more-events">+${dayEvents.length - 3} more</div>`;
+        }
+
+        html += `</div>`;
+        currentDate.setDate(currentDate.getDate() + 1);
+      }
+
+      html += '</div>';
+      return html;
+    }
+
+    function renderAgendaView(events) {
+      const today = new Date();
+      today.setHours(0, 0, 0, 0);
+
+      const futureEvents = events
+        .filter(e => new Date(e.date) >= today)
+        .sort((a, b) => {
+          const dateCompare = a.date.localeCompare(b.date);
+          if (dateCompare !== 0) return dateCompare;
+          if (!a.time && b.time) return -1;
+          if (a.time && !b.time) return 1;
+          return (a.time || '').localeCompare(b.time || '');
+        });
+
+      const groupedByDate = {};
+      futureEvents.forEach(e => {
+        if (!groupedByDate[e.date]) groupedByDate[e.date] = [];
+        groupedByDate[e.date].push(e);
+      });
+
+      let html = '<div class="agenda-list">';
+
+      Object.keys(groupedByDate).slice(0, 30).forEach(date => {
+        const dayLabel = formatDate(date);
+        
+        html += `<div class="agenda-day-group">`;
+        html += `<div class="agenda-day-header">${dayLabel}</div>`;
+
+        groupedByDate[date].forEach(e => {
+          const rsvps = DB.getRSVPs();
+          const userRSVP = rsvps.find(r => r.event_id === e.id && r.user_id === state.user.id);
+          const statusBadge = userRSVP ? 
+            (userRSVP.status === 'going' ? '<span class="badge badge-green">Going</span>' : '<span class="badge badge-yellow">Waitlist</span>') 
+            : '';
+
+          html += `<div class="agenda-event-item" onclick="openEventDetail('${e.id}')">`;
+          html += `<div class="agenda-event-time">${e.time ? formatTime(e.time) : 'All Day'}</div>`;
+          html += `<div class="agenda-event-details">`;
+          html += `<div class="agenda-event-title">${escapeHtml(e.title)}</div>`;
+          html += `<div class="agenda-event-meta">`;
+          html += `<span class="badge ${getTypeBadgeClass(e.type)}">${escapeHtml(e.type)}</span>`;
+          html += `<span>${escapeHtml(e.location)}</span>`;
+          html += statusBadge;
+          html += `</div>`;
+          html += `</div>`;
+          html += `</div>`;
+        });
+
+        html += `</div>`;
+      });
+
+      if (Object.keys(groupedByDate).length === 0) {
+        html += `<div class="empty-state">
+          <div class="empty-state-icon">📅</div>
+          <p>No upcoming events</p>
+        </div>`;
+      }
+
+      html += '</div>';
+      return html;
+    }
+
     // ===== DOCUMENTS =====
     function renderDocuments() {
       const content = `
@@ -3218,6 +3995,346 @@
       renderApp(content);
     }
 
+    // ===== CALENDAR ACTIONS =====
+    window.previousMonth = function() {
+      calendarState.month.setMonth(calendarState.month.getMonth() - 1);
+      handleRoute();
+    };
+
+    window.nextMonth = function() {
+      calendarState.month.setMonth(calendarState.month.getMonth() + 1);
+      handleRoute();
+    };
+
+    window.goToToday = function() {
+      calendarState.month = new Date();
+      handleRoute();
+    };
+
+    window.switchView = function(view) {
+      calendarState.view = view;
+      handleRoute();
+    };
+
+    window.toggleTypeFilter = function(type) {
+      const idx = calendarState.filters.types.indexOf(type);
+      if (idx > -1) {
+        calendarState.filters.types.splice(idx, 1);
+      } else {
+        calendarState.filters.types.push(type);
+      }
+      handleRoute();
+    };
+
+    window.toggleDormFilter = function(dorm) {
+      const idx = calendarState.filters.dorms.indexOf(dorm);
+      if (idx > -1) {
+        calendarState.filters.dorms.splice(idx, 1);
+      } else {
+        calendarState.filters.dorms.push(dorm);
+      }
+      handleRoute();
+    };
+
+    window.openEventDetail = function(eventId) {
+      const events = DB.getEvents();
+      const event = events.find(e => e.id === eventId);
+      if (!event) return;
+
+      const rsvps = DB.getRSVPs();
+      const goingRSVPs = rsvps.filter(r => r.event_id === eventId && r.status === 'going');
+      const waitlistRSVPs = rsvps.filter(r => r.event_id === eventId && r.status === 'waitlist');
+      const userRSVP = rsvps.find(r => r.event_id === eventId && r.user_id === state.user.id);
+      
+      const isFull = event.capacity && goingRSVPs.length >= event.capacity;
+      const isGoing = userRSVP && userRSVP.status === 'going';
+      const isWaitlisted = userRSVP && userRSVP.status === 'waitlist';
+
+      const modal = document.createElement('div');
+      modal.className = 'modal-overlay event-detail-modal';
+      modal.innerHTML = `
+        <div class="modal">
+          <div class="modal-header">
+            <h2 class="modal-title">Event Details</h2>
+            <button class="close-btn" onclick="this.closest('.modal-overlay').remove()">×</button>
+          </div>
+
+          ${event.type === 'Mandatory' ? `
+            <div class="mandatory-notice">
+              <div class="mandatory-notice-icon">⚠️</div>
+              <div class="mandatory-notice-text">
+                This is a MANDATORY event. All resident students must attend.
+              </div>
+            </div>
+          ` : ''}
+
+          <div class="event-detail-header">
+            <div>
+              <div class="event-detail-title">${escapeHtml(event.title)}</div>
+              <div class="event-detail-badges">
+                <span class="badge ${getTypeBadgeClass(event.type)}">${escapeHtml(event.type)}</span>
+                <span class="badge badge-gray">${escapeHtml(event.dorm)}</span>
+                ${isGoing ? '<span class="badge badge-green">✓ You\'re Going</span>' : ''}
+                ${isWaitlisted ? '<span class="badge badge-yellow">⏳ Waitlisted</span>' : ''}
+              </div>
+            </div>
+          </div>
+
+          <div class="event-detail-section">
+            <div class="event-detail-label">Date & Time</div>
+            <div class="event-detail-value">
+              📅 ${formatDate(event.date)} ${event.time ? `&nbsp;·&nbsp; 🕒 ${formatTime(event.time)}` : '· All Day'}
+            </div>
+          </div>
+
+          <div class="event-detail-section">
+            <div class="event-detail-label">Location</div>
+            <div class="event-detail-value">📍 ${escapeHtml(event.location)}</div>
+          </div>
+
+          <div class="event-detail-section">
+            <div class="event-detail-label">Description</div>
+            <div class="event-detail-value">${escapeHtml(event.description)}</div>
+          </div>
+
+          ${event.capacity ? `
+            <div class="event-detail-section">
+              <div class="event-detail-label">Capacity</div>
+              <div class="event-detail-value">
+                ${goingRSVPs.length} / ${event.capacity} spots filled
+                ${waitlistRSVPs.length > 0 ? ` · ${waitlistRSVPs.length} on waitlist` : ''}
+                <div class="event-capacity-bar">
+                  <div class="event-capacity-fill ${isFull ? 'full' : (goingRSVPs.length / event.capacity > 0.75 ? 'warning' : '')}" style="width: ${Math.min((goingRSVPs.length / event.capacity) * 100, 100)}%"></div>
+                </div>
+              </div>
+            </div>
+          ` : ''}
+
+          <div class="event-detail-section">
+            <div class="event-detail-label">Who's Going (${goingRSVPs.length})</div>
+            ${goingRSVPs.length === 0 ? `
+              <div class="event-detail-value" style="color:#9CA3AF;font-style:italic;">No one has signed up yet. Be the first!</div>
+            ` : `
+              <div class="event-attendees-grid">
+                ${goingRSVPs.slice(0, 10).map(r => {
+                  const user = DB.getUsers().find(u => u.id === r.user_id);
+                  return user ? `<div class="attendee-chip">${escapeHtml(user.full_name)}</div>` : '';
+                }).join('')}
+                ${goingRSVPs.length > 10 ? `<div class="attendee-chip">+${goingRSVPs.length - 10} more</div>` : ''}
+              </div>
+            `}
+          </div>
+
+          ${waitlistRSVPs.length > 0 ? `
+            <div class="event-detail-section">
+              <div class="event-detail-label">Waitlist (${waitlistRSVPs.length})</div>
+              <div class="event-attendees-grid">
+                ${waitlistRSVPs.slice(0, 10).map(r => {
+                  const user = DB.getUsers().find(u => u.id === r.user_id);
+                  return user ? `<div class="attendee-chip waitlist">${escapeHtml(user.full_name)}</div>` : '';
+                }).join('')}
+                ${waitlistRSVPs.length > 10 ? `<div class="attendee-chip waitlist">+${waitlistRSVPs.length - 10} more</div>` : ''}
+              </div>
+            </div>
+          ` : ''}
+
+          ${state.user.role === 'student' ? `
+            <div class="event-action-buttons">
+              ${!isGoing && !isWaitlisted && !isFull ? `
+                <button class="btn btn-primary" onclick="rsvpToEvent('${event.id}')">
+                  ${event.type === 'Mandatory' ? 'Acknowledge & RSVP' : 'Sign Up'}
+                </button>
+              ` : ''}
+              
+              ${!isGoing && !isWaitlisted && isFull ? `
+                <button class="btn btn-secondary" onclick="joinWaitlist('${event.id}')">Join Waitlist</button>
+              ` : ''}
+
+              ${isGoing ? `
+                <button class="btn btn-danger" onclick="confirmCancelRSVP('${event.id}')">Cancel RSVP</button>
+              ` : ''}
+
+              ${isWaitlisted ? `
+                <button class="btn btn-danger" onclick="confirmLeaveWaitlist('${event.id}')">Leave Waitlist</button>
+              ` : ''}
+            </div>
+          ` : ''}
+        </div>
+      `;
+
+      document.body.appendChild(modal);
+    };
+
+    window.rsvpToEvent = function(eventId) {
+      const event = DB.getEvents().find(e => e.id === eventId);
+      const rsvps = DB.getRSVPs();
+      const goingCount = rsvps.filter(r => r.event_id === eventId && r.status === 'going').length;
+
+      if (event.capacity && goingCount >= event.capacity) {
+        showToast('Event is full. Join the waitlist instead.', 'error');
+        return;
+      }
+
+      DB.addRSVP(eventId, state.user.id, 'going');
+      showToast('RSVP confirmed!');
+      scheduleEventReminders(eventId);
+      document.querySelector('.modal-overlay').remove();
+      handleRoute();
+    };
+
+    window.joinWaitlist = function(eventId) {
+      DB.addRSVP(eventId, state.user.id, 'waitlist');
+      showToast('Added to waitlist');
+      document.querySelector('.modal-overlay').remove();
+      handleRoute();
+    };
+
+    window.confirmCancelRSVP = function(eventId) {
+      if (!confirm('Are you sure you want to cancel your RSVP?')) return;
+      
+      const rsvps = DB.getRSVPs();
+      const waitlistRSVPs = rsvps
+        .filter(r => r.event_id === eventId && r.status === 'waitlist')
+        .sort((a, b) => new Date(a.timestamp) - new Date(b.timestamp));
+
+      DB.removeRSVP(eventId, state.user.id);
+
+      if (waitlistRSVPs.length > 0) {
+        const promoted = waitlistRSVPs[0];
+        DB.addRSVP(eventId, promoted.user_id, 'going');
+        
+        const event = DB.getEvents().find(e => e.id === eventId);
+        DB.addNotification(
+          eventId,
+          promoted.user_id,
+          'waitlist_promoted',
+          `You've been moved from the waitlist to confirmed for "${event.title}"`
+        );
+        
+        showToast('RSVP cancelled. Waitlist member promoted.');
+      } else {
+        showToast('RSVP cancelled');
+      }
+
+      document.querySelector('.modal-overlay').remove();
+      handleRoute();
+    };
+
+    window.confirmLeaveWaitlist = function(eventId) {
+      if (!confirm('Remove yourself from the waitlist?')) return;
+      DB.removeRSVP(eventId, state.user.id);
+      showToast('Removed from waitlist');
+      document.querySelector('.modal-overlay').remove();
+      handleRoute();
+    };
+
+    function scheduleEventReminders(eventId) {
+      const event = DB.getEvents().find(e => e.id === eventId);
+      if (!event) return;
+
+      const eventDateTime = new Date(event.date + (event.time ? 'T' + event.time : 'T20:00'));
+      const now = new Date();
+
+      if (event.time) {
+        const reminder24h = new Date(eventDateTime.getTime() - 24 * 60 * 60 * 1000);
+        if (reminder24h > now) {
+          DB.addNotification(
+            eventId,
+            state.user.id,
+            'reminder_24h',
+            `"${event.title}" starts in 24 hours (${formatDate(event.date)} at ${formatTime(event.time)})`
+          );
+        }
+
+        const reminder2h = new Date(eventDateTime.getTime() - 2 * 60 * 60 * 1000);
+        if (reminder2h > now) {
+          DB.addNotification(
+            eventId,
+            state.user.id,
+            'reminder_2h',
+            `"${event.title}" starts in 2 hours at ${formatTime(event.time)}`
+          );
+        }
+      } else {
+        const reminderTime = new Date(event.date);
+        reminderTime.setDate(reminderTime.getDate() - 1);
+        reminderTime.setHours(20, 0, 0, 0);
+
+        if (reminderTime > now) {
+          DB.addNotification(
+            eventId,
+            state.user.id,
+            'reminder_allday',
+            `Reminder: "${event.title}" is tomorrow (all day)`
+          );
+        }
+      }
+    }
+
+    window.toggleNotifications = function() {
+      const existing = document.querySelector('.notification-dropdown');
+      if (existing) {
+        existing.remove();
+        return;
+      }
+
+      const notifications = DB.getNotifications()
+        .filter(n => n.user_id === state.user.id)
+        .sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
+
+      const dropdown = document.createElement('div');
+      dropdown.className = 'notification-dropdown';
+      dropdown.innerHTML = `
+        <div class="notification-header">Notifications</div>
+        ${notifications.length === 0 ? `
+          <div class="notification-empty">
+            <div style="font-size:2rem;margin-bottom:0.5rem;">🔕</div>
+            <div>No notifications yet</div>
+          </div>
+        ` : notifications.slice(0, 10).map(n => {
+          const timeAgo = formatRelativeTime(n.timestamp);
+          return `
+            <div class="notification-item ${n.read ? '' : 'unread'}" onclick="markNotificationRead('${n.id}')">
+              <div class="notification-item-title">${n.type.replace(/_/g, ' ').toUpperCase()}</div>
+              <div class="notification-item-message">${escapeHtml(n.message)}</div>
+              <div class="notification-item-time">${timeAgo}</div>
+            </div>
+          `;
+        }).join('')}
+      `;
+
+      document.querySelector('.notification-bell').appendChild(dropdown);
+
+      setTimeout(() => {
+        document.addEventListener('click', function closeDropdown(e) {
+          if (!e.target.closest('.notification-bell')) {
+            dropdown.remove();
+            document.removeEventListener('click', closeDropdown);
+          }
+        });
+      }, 100);
+    };
+
+    window.markNotificationRead = function(notificationId) {
+      DB.markNotificationRead(notificationId);
+      const dropdown = document.querySelector('.notification-dropdown');
+      if (dropdown) {
+        dropdown.remove();
+        toggleNotifications();
+      }
+    };
+
+    function formatRelativeTime(timestamp) {
+      const now = new Date();
+      const then = new Date(timestamp);
+      const seconds = Math.floor((now - then) / 1000);
+      
+      if (seconds < 60) return 'Just now';
+      if (seconds < 3600) return `${Math.floor(seconds / 60)}m ago`;
+      if (seconds < 86400) return `${Math.floor(seconds / 3600)}h ago`;
+      return `${Math.floor(seconds / 86400)}d ago`;
+    }
+
     window.showCreateEventModal = function() {
       const modal = document.createElement('div');
       modal.className = 'modal-overlay';
@@ -3514,6 +4631,58 @@
     initStorage();
     loadSession();
     handleRoute();
+
+    // Request notification permission
+    if ('Notification' in window && Notification.permission === 'default') {
+      Notification.requestPermission();
+    }
+
+    // Process notifications every 5 minutes
+    function processNotifications() {
+      const notifications = DB.getNotifications();
+      const now = new Date();
+
+      notifications.forEach(n => {
+        if (n.sent || n.user_id !== state.user.id) return;
+
+        const event = DB.getEvents().find(e => e.id === n.event_id);
+        if (!event) return;
+
+        const eventDateTime = new Date(event.date + (event.time ? 'T' + event.time : 'T20:00'));
+        let shouldSend = false;
+
+        if (n.type === 'reminder_24h') {
+          const trigger = new Date(eventDateTime.getTime() - 24 * 60 * 60 * 1000);
+          shouldSend = now >= trigger;
+        } else if (n.type === 'reminder_2h') {
+          const trigger = new Date(eventDateTime.getTime() - 2 * 60 * 60 * 1000);
+          shouldSend = now >= trigger;
+        } else if (n.type === 'reminder_allday') {
+          const trigger = new Date(event.date);
+          trigger.setDate(trigger.getDate() - 1);
+          trigger.setHours(20, 0, 0, 0);
+          shouldSend = now >= trigger;
+        } else if (n.type === 'waitlist_promoted') {
+          shouldSend = true;
+        }
+
+        if (shouldSend) {
+          n.sent = true;
+          
+          if ('Notification' in window && Notification.permission === 'granted') {
+            new Notification('Villanova Prep', {
+              body: n.message,
+              icon: '🏫'
+            });
+          }
+        }
+      });
+
+      DB.saveNotifications(notifications);
+    }
+
+    setInterval(processNotifications, 5 * 60 * 1000);
+    processNotifications();
   </script>
 </body>
 </html>
